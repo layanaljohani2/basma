@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>بصمة · BASMA — منصة تجريبية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f3f6f5;--card:#fff;--ink:#10201f;--muted:#5d6f6d;--line:#dfe8e6;--dark:#0b2a2a;--teal:#0f6b63;--teal2:#138a7f;--tealbg:#e4f2ef;--orange:#e8774a;--red:#c8453b;--redbg:#fbe9e7;--amber:#b9800f;--amberbg:#fdf3dc;--green:#2f8f5b;--greenbg:#e5f4ea;--violet:#5b4fb5;--violetbg:#f1effb;--r:14px}
+*{box-sizing:border-box}
+body{margin:0;font-family:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+button,input,textarea,select{font:inherit;color:inherit}
+.top{background:var(--dark);color:#fff;position:sticky;top:0;z-index:20}
+.top-in{max-width:1220px;margin:auto;padding:12px 20px 0}
+.top-row{display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-weight:700;font-size:24px}
+.badge-demo{margin-inline-start:auto;border:1px solid #ffffff55;border-radius:999px;padding:4px 14px;font-size:13px;color:#e6f0ee}
+nav{display:flex;gap:2px;overflow-x:auto;margin-top:8px;scrollbar-width:none}
+nav a{color:#cfe3e0;text-decoration:none;padding:10px 16px;font-size:15px;white-space:nowrap;border-bottom:3px solid transparent}
+nav a.on{color:#fff;font-weight:700;border-color:#2fb3a5}
+nav a:hover{color:#fff}
+main{max-width:1220px;margin:auto;padding:24px 20px 70px}
+h1,h2,h3,h4{margin:0 0 6px;line-height:1.35}
+h1{font-size:30px}h2{font-size:22px}h3{font-size:17px}h4{font-size:15px}
+.muted{color:var(--muted)}.note{font-size:13px;color:var(--muted)}
+.eyebrow{color:var(--teal);font-weight:600;font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.sp{flex:1}
+.btn{border:0;border-radius:10px;padding:9px 16px;background:var(--teal);color:#fff;font-weight:600;cursor:pointer;font-size:14px}
+.btn:hover{background:#0c5a53}.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:#fff;color:var(--teal);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--teal)}
+.btn.dark{background:var(--dark)}
+.btn.sm{padding:5px 12px;font-size:13px}
+.btn.red{background:var(--red)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 13px;cursor:pointer;font-size:14px}
+.chip.on{background:var(--tealbg);border-color:var(--teal);color:var(--teal);font-weight:600}
+.chip.on::before{content:"✓ "}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.seg button{border:0;background:#fff;padding:6px 12px;cursor:pointer;font-size:13px}
+.seg button+button{border-inline-start:1px solid var(--line)}
+.seg button.on{background:var(--tealbg);color:var(--teal);font-weight:700}
+.seg button.on-s{background:var(--greenbg);color:var(--green);font-weight:700}
+.seg button.on-c{background:var(--redbg);color:var(--red);font-weight:700}
+label.f{display:block;font-weight:600;font-size:14px;margin:12px 0 5px}
+input[type=text],input[type=number],textarea,select{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:#fff}
+input:focus,textarea:focus,select:focus{outline:2px solid #9fd3cb;border-color:var(--teal)}
+textarea{min-height:56px;resize:vertical}
+.pill{display:inline-block;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600;white-space:nowrap}
+.p-red{background:var(--redbg);color:var(--red)}.p-amber{background:var(--amberbg);color:var(--amber)}.p-green{background:var(--greenbg);color:var(--green)}.p-teal{background:var(--tealbg);color:var(--teal)}.p-gray{background:#eef1f1;color:#5d6f6d}.p-violet{background:var(--violetbg);color:var(--violet)}
+.src{display:inline-block;font-size:11px;border-radius:6px;padding:1px 7px;background:#eef1f1;color:#5d6f6d;margin-inline-start:4px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{font-weight:600;color:var(--muted);text-align:right;padding:9px 10px;border-bottom:1px solid var(--line);font-size:13px;background:#f7faf9}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr.click{cursor:pointer}tr.click:hover td{background:#f4faf8}tr.sel td{background:#eaf5f2}
+.res{border-radius:12px;padding:12px 14px;border:1px solid}
+.res.red{background:var(--redbg);border-color:#efc3bd;color:#7d2a22}
+.res.amber{background:var(--amberbg);border-color:#f0dba6;color:#6d4c08}
+.res.green{background:var(--greenbg);border-color:#bfe3cc;color:#1d5d3a}
+.res.gray{background:#f4f6f6;border-color:var(--line);color:var(--muted)}
+.res b.t{font-size:17px;display:block}
+.res b.t::before{content:"● "}
+.hero{background:linear-gradient(160deg,#2b5f66 0%,#163a3d 55%,#0d2526 100%);color:#fff;border-radius:20px;padding:36px;position:relative;overflow:hidden}
+.hero h1{font-size:50px}
+.hero .sub{color:var(--orange);font-size:21px;font-weight:600}
+.hero p{color:#c9dcd9;max-width:680px}
+.hero .fp{position:absolute;inset-inline-end:30px;top:30px;opacity:.12}
+.path{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.path .st{border:1px solid var(--line);border-radius:12px;padding:10px;cursor:pointer;background:#fff}
+.path .st:hover{border-color:var(--teal)}
+.path .st small{color:var(--teal);font-weight:600;font-size:11px}
+.path .st b{display:block;font-size:14px}
+.av{width:42px;height:42px;border-radius:50%;background:var(--tealbg);color:var(--teal);display:grid;place-items:center;font-weight:700;flex:none}
+.stepper{display:flex;gap:8px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line)}
+.stepper button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 12px 5px 14px;cursor:pointer;font-size:14px;display:flex;align-items:center;gap:6px}
+.stepper button i{font-style:normal;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;background:#eef1f1}
+.stepper button.on{background:var(--dark);color:#fff;border-color:var(--dark)}
+.stepper button.on i{background:#fff;color:var(--dark)}
+.stepper button.done i{background:var(--teal);color:#fff}
+.ic{font-size:16px;margin-inline-end:4px}
+.hcard{background:#fff8ec;border-color:#f3d9a8}
+.pcard{background:#f6f5fd;border-color:#dcd8f3}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:4px 12px;font-size:14px;margin:0}
+.kv dt{color:var(--muted)}.kv dd{margin:0}
+.tl{list-style:none;padding:0;margin:0}
+.tl li{display:flex;gap:10px;padding:4px 0;font-size:14px}
+.tl li::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--teal);margin-top:7px;flex:none;box-shadow:0 0 0 3px var(--tealbg)}
+.tl time{font-weight:700;color:var(--teal);flex:none}
+.phone{background:#fff;border:10px solid var(--dark);border-radius:34px;padding:16px;max-width:430px;margin:auto}
+.board-grid{display:grid;grid-template-columns:1fr 120px 1fr;gap:8px;align-items:center}
+.bbtn{display:block;width:100%;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px;margin:6px 0;cursor:pointer;font-size:14px}
+.bbtn.on{background:var(--tealbg);border-color:var(--teal);font-weight:700}
+.faces{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.face{border:1px solid var(--line);border-radius:10px;background:#fff;padding:6px 2px;cursor:pointer;font-size:11px;text-align:center}
+.face.on{border-color:var(--teal);background:var(--tealbg);font-weight:700}
+.wants{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+svg .reg{fill:#e8eeed;stroke:#b8c9c6;stroke-width:1.5}
+svg .reg.on{fill:#f2a08a;stroke:var(--red)}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--dark);color:#fff;padding:10px 18px;border-radius:10px;opacity:0;transition:.25s;pointer-events:none;z-index:50;max-width:90vw}
+.toast.show{opacity:1}
+.code{background:#0d2222;color:#d6efe9;border-radius:12px;padding:14px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;max-height:520px;overflow:auto;direction:ltr;text-align:left;white-space:pre;margin:0}
+.dash{display:grid;grid-template-columns:190px 1fr;gap:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#fff}
+.dash aside{background:var(--dark);color:#cfe3e0;padding:18px 12px}
+.dash aside a{display:flex;justify-content:space-between;padding:8px 10px;border-radius:8px;color:#cfe3e0;text-decoration:none;font-size:14px;cursor:pointer}
+.dash aside a.on,.dash aside a:hover{background:#ffffff14;color:#fff}
+.dash aside .n{background:var(--red);color:#fff;border-radius:999px;font-size:11px;padding:0 7px}
+.dash .in{padding:18px;background:var(--bg)}
+.kpi b{font-size:30px;display:block;line-height:1.2}
+.kpi.red b{color:var(--red)}.kpi.amber b{color:var(--amber)}
+.alert{border-inline-start:4px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;font-size:13px;margin-bottom:8px}
+.alert.red{border-color:var(--red)}.alert.amber{border-color:#e3b13b}.alert.green{border-color:var(--green)}.alert.gray{border-color:#b9c7c5}.alert.violet{border-color:var(--violet)}
+.due-late{background:var(--amberbg);color:var(--amber);font-weight:700;border-radius:6px;padding:1px 6px}
+.bar{height:8px;border-radius:9px;background:#eef1f1;position:relative;overflow:hidden}
+.bar span{position:absolute;inset-inline-start:0;top:0;bottom:0;border-radius:9px}
+.doc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;max-width:860px}
+.doc h3{color:var(--teal);margin-top:18px}
+.progress{height:8px;background:#e6eceb;border-radius:9px;overflow:hidden}
+.progress span{display:block;height:100%;background:var(--teal);transition:width .3s}
+.sec-h{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.sec-h .n{width:24px;height:24px;border-radius:50%;background:var(--tealbg);color:var(--teal);display:grid;place-items:center;font-size:12px;font-weight:700}
+.split{display:grid;gap:14px;grid-template-columns:minmax(0,2.2fr) minmax(250px,1fr);align-items:start}
+.split2{display:grid;gap:14px;grid-template-columns:minmax(280px,1fr) minmax(0,1.5fr);align-items:start}
+.dtable{min-width:560px}
+.chk::before{content:"";display:inline-block;width:14px;height:14px;border:1.5px solid #9fb6b2;border-radius:4px;margin-inline-end:6px;vertical-align:-2px;background:#fff}
+.chk.on::before{content:"✓";background:var(--teal);border-color:var(--teal);color:#fff;font-size:11px;line-height:14px;text-align:center}
+.chip.chk.on::before{content:"✓"}
+.ftabs{display:inline-flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:10px}
+.ftabs button{border:0;background:#fff;padding:8px 18px;cursor:pointer}
+.ftabs button.on{background:var(--tealbg);color:var(--teal);font-weight:700}
+.dashed{border-style:dashed}
+.stepper{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+.stepper button{white-space:nowrap;flex:none}
+@media(max-width:860px){.split,.split2{grid-template-columns:1fr}.g4{grid-template-columns:1fr 1fr}
+ .ctab thead{display:none}.ctab tr{display:block;border-bottom:1px solid var(--line);padding:8px 0}.ctab td{display:block;border:0;padding:3px 0}.ctab td:first-child{font-size:15px}
+ h1{font-size:24px}main{padding:16px 14px 60px}.hero{padding:22px}.dash .in{padding:12px}}
+@media(max-width:860px){.dash{grid-template-columns:1fr}.dash aside{display:flex;flex-wrap:wrap;gap:4px}.hero h1{font-size:38px}.kv{grid-template-columns:1fr}.board-grid{grid-template-columns:1fr 100px 1fr}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <div class="top-row">
+    <a class="brand" href="#home"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#5fd0c3" stroke-width="1.7" stroke-linecap="round"><path d="M12 3a8 8 0 0 0-8 8v2"/><path d="M20 13v-2a8 8 0 0 0-3-6.2"/><path d="M8 20c1-1.5 1.5-3.5 1.5-6v-2.5a2.5 2.5 0 0 1 5 0V14"/><path d="M12 11.5V15c0 2.5-.7 4.5-2 6"/><path d="M17 14c0 2.5-.4 4.5-1.2 6"/></svg>بصمة</a>
+    <span class="badge-demo">نموذج تجريبي · بيانات افتراضية</span>
+  </div>
+  <nav id="nav">
+    <a href="#home" data-v="home">الرئيسية</a>
+    <a href="#family" data-v="family">الأسرة</a>
+    <a href="#nurse" data-v="nurse">الممرض</a>
+    <a href="#dashboard" data-v="dashboard">لوحة التحكم</a>
+    <a href="#doctor" data-v="doctor">ملخص الطبيب</a>
+    <a href="#ai" data-v="ai">الذكاء الاصطناعي</a>
+    <a href="#fhir" data-v="fhir">الربط مع الملف الصحي</a>
+  </nav>
+</div></header>
+<main id="app"></main>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ================= ثوابت ================= */
+const DOM=[['face','تعابير الوجه'],['move','الحركة'],['voice','الأصوات'],['touch','الاستجابة للمس'],['social','التفاعل'],['sleep','النوم'],['eat','الأكل']];
+const PAIN_OPTS=['أنين متكرر','بكاء أو صراخ','يمسك المكان المؤلم','يتقوّس ظهره أو يتيبّس جسمه','يغمض عينيه بقوة','يقل نشاطه','تقطيب الوجه','ينعزل عن أسرته','يرفض الأكل','يضرب رأسه أو يعض يده','يستيقظ كثيرًا ليلًا','تزيد حركته أو يهيج'];
+const REGIONS=[['head','الرأس'],['mouth','الأسنان والفم'],['ear','الأذن'],['chest','الصدر'],['abd','البطن'],['back','الظهر'],['hand','اليد'],['leg','الرجل']];
+const FACES=[['ما يوجع','#2f9e5b'],['يوجع شوي','#8bbf3c'],['يوجع','#e8c23a'],['يوجع كثير','#ec8a2f'],['يوجع كثير جدًا','#d9443a']];
+const WANTS=[['💧','ماء'],['🚻','حمام'],['🍽️','أكل'],['🛏️','نوم']];
+const OPQ=[['onset','البداية'],['loc','الموقع'],['nature','الطبيعة'],['radiate','الانتشار'],['worse','ما يزيده'],['better','ما يخففه'],['assoc','الأعراض المصاحبة'],['sev','الشدة']];
+const KEY='basma-demo-v3';
+
+/* ================= أدوات ================= */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const MIN=60000;
+const hm=t=>{if(!t)return '—';const d=new Date(t);return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0')};
+const ago=m=>Date.now()-m*MIN;
+function fmtDate(t){try{return new Date(t).toLocaleDateString('ar-SA-u-ca-gregory-nu-latn',{day:'numeric',month:'long',year:'numeric'})}catch(e){return ''}}
+function monthsSince(t){const a=new Date(t),b=new Date();return (b.getFullYear()-a.getFullYear())*12+(b.getMonth()-a.getMonth())}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),2400)}
+function copyText(txt,msg){try{navigator.clipboard.writeText(txt).then(()=>toast(msg||'تم النسخ'),()=>toast('تعذّر النسخ، حدّدي النص وانسخيه'))}catch(e){toast('تعذّر النسخ، حدّدي النص وانسخيه')}}
+
+/* ================= البيانات الافتراضية ================= */
+function emptyCard(){return {comm:{speaks:false,sign:false,pictures:false,points:false,refuse:''},pain:[],painOther:'',base:{face:'',move:'',voice:'',touch:'',social:'',sleep:'',eat:''},handle:{upset:'',beforeTouch:'',comfort:''},med:{cond:'',recur:'',allergy:''},video:false,companion:'',consent:false,updated:null,by:'',temp:false}}
+function emptyVisit(arr){return {arrived:arr||Date.now(),cmp:{},cmpStart:null,cmpSecs:null,cmpSaved:null,q:{express:null,acute:true},score:'',board:{loc:[],sev:null,wants:[]},painSaved:null,opq:{},hidden:[],hiddenSaved:false,interv:null,due:null,after:{},afterScore:'',reassessed:null,finalCause:'',episodeSaved:false,closed:false,history:[],tl:[]}}
+function mkCmp(changed){const o={};DOM.forEach(([k])=>o[k]={s:'same'});Object.entries(changed).forEach(([k,v])=>o[k]={s:'changed',n:v.n||'',m:!!v.m});return o}
+function seed(){
+  const saadCard={comm:{speaks:false,sign:true,pictures:true,points:true,refuse:'يرفض بهز رأسه، ويبتعد إذا خاف.'},
+    pain:['أنين متكرر','يمسك المكان المؤلم','يقل نشاطه','يغمض عينيه بقوة'],painOther:'',
+    base:{face:'هادئ، ويبتسم لأسرته',move:'كثير الحركة ويحرك يديه باستمرار',voice:'هادئ أثناء الراحة',touch:'يتقبل اللمس',social:'يتفاعل مع أسرته',sleep:'يستيقظ ليلًا مرتين',eat:'شهيته جيدة'},
+    handle:{upset:'الصوت العالي والإضاءة القوية',beforeTouch:'كلّميه وأريه يدك أولًا',comfort:'وجود والدته والإضاءة الخافتة'},
+    med:{cond:'صرع مسيطر عليه بالأدوية',recur:'إمساك متكرر',allergy:'لا يوجد'},video:true,companion:'والدته',consent:true,updated:new Date('2026-09-03').getTime(),by:'والدته',temp:false};
+  const card=(o)=>Object.assign(emptyCard(),o);
+  const P=[
+   {id:'1012345678',mrn:'10482',name:'سعد',age:24,sex:'ذكر',dx:'إعاقة فكرية',bed:7,card:saadCard,
+    diary:[{t:'السبت 14:00',x:'أنين من الصباح، ويرفض لمس بطنه.',src:'الأسرة'},{t:'الجمعة 13:00',x:'أكل نصف وجبته فقط.',src:'الأسرة'},{t:'الخميس 12:00',x:'أقل تفاعلًا في الجلسة، ولم يتبرز منذ الثلاثاء.',src:'مركز التأهيل'}],
+    diarySum:'تغيّر بدأ قبل 3 أيام: نوم أقل، ثم أكل أقل، ولم يتبرز منذ 4 أيام',
+    episodes:[{date:'مارس 2026',cause:'إمساك',signs:'قلة الحركة ويمسك بطنه'}],v:emptyVisit()},
+   {id:'1023456789',mrn:'20517',name:'ريم',age:9,sex:'أنثى',dx:'شلل دماغي وإعاقة عصبية شديدة',bed:4,
+    card:card({comm:{speaks:false,sign:false,pictures:false,points:false,refuse:'تبكي وتدير وجهها'},pain:['بكاء أو صراخ','يضرب رأسه أو يعض يده','يستيقظ كثيرًا ليلًا'],
+      base:{face:'تعابير قليلة',move:'تتحرك بكرسي متحرك، وتشد يديها أحيانًا',voice:'تصدر أصواتًا عالية عند الفرح',touch:'تنزعج من لمس القدمين',social:'تحب الأغاني وتلتفت لها',sleep:'نومها متقطع عادة',eat:'تأكل بالملعقة ببطء'},
+      handle:{upset:'الأصوات المفاجئة',beforeTouch:'نادِ اسمها قبل لمسها',comfort:'أغنية معينة على جوال والدتها'},med:{cond:'شلل دماغي، صرع',recur:'ارتجاع',allergy:'البنسلين'},video:true,companion:'والدتها',consent:true,updated:new Date('2026-05-11').getTime(),by:'والدتها'}),
+    diary:[],diarySum:'',episodes:[],v:Object.assign(emptyVisit(ago(25)),{})},
+   {id:'1034567890',mrn:'30211',name:'فهد',age:31,sex:'ذكر',dx:'متلازمة داون',bed:3,
+    card:card({comm:{speaks:true,sign:true,pictures:false,points:true,refuse:'يقول «لا» ويغادر'},pain:['يضرب رأسه أو يعض يده','ينعزل عن أسرته'],
+      base:{face:'هادئ',move:'يمشي باستقلالية',voice:'يتكلم بكلمات قليلة',touch:'يتقبل اللمس',social:'اجتماعي',sleep:'ينام جيدًا',eat:'يأكل جيدًا'},handle:{upset:'الانتظار الطويل',beforeTouch:'اشرح له بكلمات قصيرة',comfort:'لعبته المفضلة'},
+      med:{cond:'متلازمة داون، قصور الغدة الدرقية',recur:'مشكلات الأسنان',allergy:'لا يوجد'},video:false,companion:'أخوه',consent:true,updated:new Date('2026-08-20').getTime(),by:'أخوه'}),
+    diary:[],diarySum:'',episodes:[],
+    v:Object.assign(emptyVisit(ago(150)),{cmp:mkCmp({voice:{n:'صامت'},face:{n:'عبوس'},touch:{n:'يرفض لمس الفك'},social:{n:'منعزل',m:true}}),cmpSaved:ago(140),score:'',due:ago(6),
+      history:[{t:ago(140),c:2},{t:ago(70),c:3},{t:ago(15),c:4}],tl:[{t:ago(140),x:'المقارنة السريعة: مجالان متغيران - احتمال ألم'},{t:ago(15),x:'إعادة مقارنة: 4 مجالات متغيرة - التغير يزداد'}]})},
+   {id:'1045678901',mrn:'40355',name:'نورة',age:19,sex:'أنثى',dx:'اضطراب طيف التوحد',bed:5,
+    card:card({comm:{speaks:true,sign:false,pictures:true,points:true,refuse:'تكتب على جهازها'},pain:['ينعزل عن أسرته','يستيقظ كثيرًا ليلًا'],
+      base:{face:'مرتاحة',move:'نشيطة',voice:'تتكلم بجمل قصيرة',touch:'تتقبل اللمس بعد التنبيه',social:'خجولة مع الغرباء',sleep:'تنام جيدًا',eat:'جيد'},handle:{upset:'الزحام',beforeTouch:'نبّهيها قبل اللمس',comfort:'سماعاتها'},
+      med:{cond:'اضطراب طيف التوحد',recur:'',allergy:'لا يوجد'},video:true,companion:'والدها',consent:true,updated:new Date('2026-10-02').getTime(),by:'والدها'}),
+    diary:[],diarySum:'',episodes:[],v:Object.assign(emptyVisit(ago(90)),{cmp:mkCmp({sleep:{n:'لم تنم البارحة'}}),cmpSaved:ago(75),history:[{t:ago(75),c:1}],tl:[{t:ago(75),x:'المقارنة السريعة: مجال واحد متغير - متابعة'}]})},
+   {id:'1056789012',mrn:'50190',name:'خالد',age:28,sex:'ذكر',dx:'إعاقة فكرية متوسطة',bed:11,
+    card:card({comm:{speaks:true,sign:false,pictures:false,points:true,refuse:'يرفع صوته'},pain:['تقطيب الوجه'],base:{face:'مبتسم',move:'طبيعية',voice:'يتكلم',touch:'يتقبل اللمس',social:'اجتماعي',sleep:'جيد',eat:'جيد'},handle:{upset:'',beforeTouch:'',comfort:'الحديث عن كرة القدم'},med:{cond:'—',recur:'',allergy:'لا يوجد'},companion:'والده',consent:true,updated:new Date('2026-07-15').getTime(),by:'والده'}),
+    diary:[],diarySum:'',episodes:[],v:Object.assign(emptyVisit(ago(200)),{cmp:mkCmp({}),cmpSaved:ago(190),score:'2',history:[{t:ago(190),c:0}],tl:[{t:ago(190),x:'المقارنة السريعة: مثل عادته - لا تغير'}]})},
+   {id:'1067890123',mrn:'60744',name:'مريم',age:52,sex:'أنثى',dx:'إعاقة فكرية',bed:2,
+    card:card({comm:{speaks:false,sign:true,pictures:true,points:false,refuse:'تغطي وجهها'},pain:['أنين متكرر'],base:{face:'هادئة',move:'قليلة الحركة',voice:'هادئة',touch:'تتقبل اللمس',social:'تتفاعل مع أختها',sleep:'جيد',eat:'جيد'},handle:{upset:'',beforeTouch:'',comfort:'أختها'},med:{cond:'سكري النوع 2',recur:'',allergy:'لا يوجد'},companion:'أختها',consent:true,updated:new Date('2026-03-01').getTime(),by:'أختها'}),
+    diary:[],diarySum:'',episodes:[],v:Object.assign(emptyVisit(ago(120)),{cmp:mkCmp({}),cmpSaved:ago(110),history:[{t:ago(110),c:0}],tl:[{t:ago(110),x:'المقارنة السريعة: مثل عادتها - لا تغير'}]})},
+   {id:'1078901234',mrn:'55555',name:'عبدالله',age:35,sex:'ذكر',dx:'—',bed:12,card:null,diary:[],diarySum:'',episodes:[],v:emptyVisit(ago(8))}
+  ];
+  return {patients:P};
+}
+let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){S=null}
+if(!S||!S.patients)S=seed();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+const U={nurse:null,step:1,fam:'10482',famNew:null,dashSel:'30211',dashTab:'all',doc:'10482',fhir:'10482',ai:{mode:'base',run:0,done:false},quick:{comm:'',calm:'',pain:'',diff:''},search:''};
+const byMrn=m=>S.patients.find(p=>p.mrn===m);
+function findQ(q){q=String(q||'').trim();return S.patients.find(p=>p.mrn===q||p.id===q)}
+
+/* ================= منطق بصمة ================= */
+function evalCmp(cmp){
+  const ans=DOM.filter(([k])=>cmp[k]?.s), ch=DOM.filter(([k])=>cmp[k]?.s==='changed'), mt=ch.filter(([k])=>cmp[k].m);
+  let c,t,x;
+  if(!ans.length){c='gray';t='لم تبدأ المقارنة';x='اختاري لكل مجال: مثل عادته أو متغير.'}
+  else if(!ch.length){c='green';t='مثل عادته - لا تغير';x='كل المجالات مثل عادته.'}
+  else if(mt.length||ch.length>=2){c='red';t='تغير واضح - احتمال ألم';x=`${ch.length===1?'مجال واحد متغير':ch.length+' مجالات متغيرة'}${mt.length?`، منها ${mt.length===1?'واحد يطابق علامة ألم معروفة عنه':mt.length+' تطابق علامات ألم معروفة عنه'}`:''}.`}
+  else{c='amber';t='تغير بسيط - يحتاج متابعة';x='مجال واحد متغير لا يطابق علامة ألم معروفة.'}
+  return {c,t,x,ans,ch,mt};
+}
+const COLOR_AR={red:'أحمر',amber:'أصفر',green:'أخضر',gray:'—'};
+function suggestedActions(e){
+  if(e.c==='red')return ['قيّمي الألم بالمقياس المناسب (المنصة تختاره).','حددي موقع الألم بلوحة الصور.','راجعي قائمة الأسباب الخفية.','أبلغي الطبيب بملخص التغيرات.'];
+  if(e.c==='amber')return ['استمري بالمتابعة وأعيدي المقارنة خلال ساعة.','اسألي المرافق إن كان يعرف سبب التغير.'];
+  if(e.c==='green')return ['استمري بالمتابعة المعتادة حسب سياسة القسم.','أعيدي المقارنة إذا لاحظت الأسرة أو الفريق تغيرًا.'];
+  return [];
+}
+function recScale(p){
+  const q=p.v.q, child=p.age<18;
+  const ex=q.express??(p.card?.comm.speaks?'yes':(p.card?.comm.pictures?'partial':'no'));
+  if(ex==='yes')return child?{name:'مقياس الوجوه (FPS-R)',full:'Faces Pain Scale – Revised',desc:'ست وجوه تُحوّل إلى 0–10',max:10,why:'يستطيع التعبير عن ألمه، فيُسأل هو أولًا بالوجوه.'}:{name:'مقياس الأرقام (NRS)',full:'Numeric Rating Scale',desc:'من 0 إلى 10',max:10,why:'بالغ يستطيع التعبير عن ألمه بنفسه، فيُسأل أولًا.'};
+  const sev=p.v.board.sev;
+  if(ex==='partial'&&sev!==null&&sev!=='none')return {name:'مقياس الوجوه (FPS-R)',full:'Faces Pain Scale – Revised',desc:'اختار الشدة بنفسه من لوحة الصور',max:10,why:'أشار للمكان واختار الشدة بنفسه من الوجوه، فتُعتمد إجابته.'};
+  const why=(ex==='partial'?'أشار لمكان الألم بالصور، لكنه لا يستطيع تحديد الشدة.':'لا يستطيع التعبير عن ألمه بنفسه.');
+  if(child&&ex==='no'&&/شلل|عصبي/.test(p.dx))return {name:'PPP',full:'Paediatric Pain Profile',desc:'20 سلوكًا، تُقارن بـ«يومها الجيد» الذي تسجله الأسرة',max:null,why:'طفلة بإعاقة عصبية شديدة لا تتكلم ولا تفهم الصور، فيُقارن سلوكها بخط أساسها هي.'};
+  if(child)return {name:'r-FLACC',full:'Revised FLACC',desc:'5 فئات سلوكية · 0–10، مع علامات الألم الخاصة التي ذكرتها الأسرة',max:10,why:'طفل، و'+why};
+  if(!q.acute)return {name:'CPS-NAID',full:'Chronic Pain Scale for Nonverbal Adults with Intellectual Disabilities',desc:'قائمة سلوكية للألم المزمن',max:null,why:'بالغ، والألم مزمن أو متكرر، و'+why};
+  return {name:'NCAPC',full:'Non-Communicating Adult Pain Checklist',desc:'قائمة سلوكية من 18 بندًا',max:null,why:'بالغ، والألم حاد، و'+why};
+}
+function sevLabel(sc,score){if(score===''||score==null)return null;const v=+score;if(sc.max!==10)return {c:'teal',t:'درجة سلوكية: تُقارن بقيمة المريض نفسه بعد التدخل'};if(v===0)return {c:'green',t:'لا ألم ظاهر'};if(v<=3)return {c:'green',t:'خفيف'};if(v<=6)return {c:'amber',t:'متوسط'};return {c:'red',t:'شديد'}}
+function locNames(b){return b.loc.map(k=>REGIONS.find(r=>r[0]===k)[1])}
+function hiddenCauses(p){
+  const L=p.v.board.loc, rec=(p.card?.med.recur||''), out=[], add=(n,w)=>{if(!out.find(o=>o.n===n))out.push({n,w})};
+  const constip=/إمساك/.test(rec)||/يتبرز/.test(p.diarySum);
+  if(L.includes('abd')){if(constip)add('إمساك',[/إمساك/.test(rec)?'متكرر عنده حسب البطاقة':'',/يتبرز/.test(p.diarySum)?'لم يتبرز منذ 4 أيام (اليوميات)':''].filter(Boolean).join('، '));add('التهاب أو احتباس في المسالك البولية','سبب شائع لألم البطن لا يعبّر عنه المريض');add('سبب بطني حاد آخر','يحدده فحص الطبيب')}
+  if(L.includes('mouth'))add('مشكلات الأسنان','من أشيع مصادر الألم غير المعبّر عنه');
+  if(L.includes('ear'))add('التهاب الأذن','يشير للأذن');
+  if(L.includes('chest'))add('ارتجاع المريء','ألم صدر أو رفض أكل');
+  if(L.includes('head'))add('إصابة رأس من سقوط غير ملحوظ','اسألي المرافق عن أي سقوط');
+  if(L.includes('back'))add('الكلى أو المسالك البولية','ألم الظهر');
+  if(L.includes('hand')||L.includes('leg'))add('كسر أو إصابة غير ملحوظة','قد لا يظهر إلا بقلة الحركة');
+  if(/أسنان/.test(rec))add('مشكلات الأسنان','متكررة عنده حسب البطاقة');
+  if(/ارتجاع/.test(rec))add('ارتجاع المريء','متكرر عنده حسب البطاقة');
+  if(!L.length){if(constip)add('إمساك','متكرر عنده');['مشكلات الأسنان','التهاب الأذن','التهاب المسالك البولية','ارتجاع المريء','إصابة غير ملحوظة'].forEach(n=>add(n,'سبب شائع لا يعبّر عنه ذوو الإعاقة'))}
+  (p.episodes||[]).forEach(e=>{const f=out.find(o=>o.n.includes(e.cause)||e.cause.includes(o.n));const w=`تكرر سابقًا (${e.date}) بعلامات مشابهة: ${e.signs}`;if(f)f.w+=(f.w?' · ':'')+w;else add(e.cause,w)});
+  return out;
+}
+function autoOpq(p){
+  const v=p.v,c=p.card||emptyCard(),e=evalCmp(v.cmp),sc=recScale(p),loc=locNames(v.board);
+  const worse=e.ch.map(([k])=>v.cmp[k].n).filter(Boolean).join('، ');
+  return {
+    onset:[p.diarySum?p.diarySum.split(':')[0]:'','اليوميات'],
+    loc:[loc.length?loc.join('، ')+(v.board.loc.length?': أشار إليه بالصور':''):'',loc.length?'المريض':''],
+    nature:['','غير قابل للتقييم'],radiate:['','غير قابل للتقييم'],
+    worse:[worse,worse?'الممرض':''],
+    better:[c.handle.comfort,c.handle.comfort?'إفادة الأسرة':''],
+    assoc:[p.diarySum&&p.diarySum.includes(':')?p.diarySum.split(':')[1].trim():'',p.diarySum?'اليوميات':''],
+    sev:[v.score!==''?`درجة ${sc.name}: ${v.score}${sc.max?' من '+sc.max:''}`:(v.board.sev==='none'?'لم يستطع اختيار الشدة':''),v.score!==''?'المقياس':'']
+  };
+}
+function status(p){
+  if(!p.card)return {c:'gray',t:'بلا بطاقة',o:2};
+  if(p.v.closed)return {c:'gray',t:'خرج',o:5};
+  if(!p.v.cmpSaved)return {c:'gray',t:'بانتظار التقييم',o:2};
+  const e=evalCmp(p.v.cmp);return {c:e.c,t:COLOR_AR[e.c],o:{red:0,amber:1,green:3}[e.c]??4};
+}
+function addTL(p,x){p.v.tl.push({t:Date.now(),x})}
+
+/* ================= التوجيه ================= */
+const VIEWS={home:vHome,family:vFamily,nurse:vNurse,dashboard:vDash,doctor:vDoctor,ai:vAI,fhir:vFhir};
+function route(){const v=(location.hash||'#home').slice(1);document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('on',a.dataset.v===v));(VIEWS[v]||vHome)()}
+function go(v){if(location.hash==='#'+v){route();scrollTo(0,0)}else{location.hash=v;scrollTo(0,0)}}
+window.addEventListener('hashchange',()=>{route();scrollTo(0,0)});
+function rr(){const y=scrollY;route();scrollTo(0,y)}
+function openNurse(mrn,step){U.nurse=mrn;U.step=step||1;U.quick={comm:'',calm:'',pain:'',diff:''};go('nurse')}
+
+/* ================= الرئيسية ================= */
+function vHome(){
+  const steps=[['الأسرة تنشئ البصمة','بطاقة الحالة المعتادة واليوميات',()=>"U.fam='10482';go('family')"],['الممرض يسترجع البطاقة','برقم الهوية أو الملف الطبي',()=>"openNurse('10482',1)"],['المقارنة السريعة','مثل عادته أم متغير؟',()=>"openNurse('10482',2)"],['تقييم الألم','لوحة الصور والمقياس المناسب',()=>"openNurse('10482',3)"],['الأسباب الخفية','مرتبة حسب ملفه ونوباته',()=>"openNurse('10482',4)"],['المتابعة','إعادة التقييم وذاكرة النوبات',()=>"openNurse('10482',5)"],['لوحة التحكم الذكية','كل مرضى القسم حسب الأولوية',()=>"go('dashboard')"],['ملخص الطبيب','صفحة واحدة جاهزة',()=>"U.doc='10482';go('doctor')"],['الربط مع الملف الصحي','كيف تُحفظ البيانات بمعيار FHIR',()=>"go('fhir')"]];
+  const pc=(p,extra)=>`<div class="card"><div class="row"><div class="av">${esc(p.name[0])}</div><div><h3 style="margin:0">${esc(p.name)}</h3><div class="note">${p.age<18?'طفل':'بالغ'} · ${p.age} سنة · ${esc(p.dx)}</div></div></div>
+    <div class="row" style="margin:10px 0"><span class="pill p-gray">رقم الملف ${p.mrn}</span>${p.card?'<span class="pill p-green">● بطاقة بصمة</span>':'<span class="pill p-red">بلا بطاقة</span>'}<span class="pill p-teal">في الطوارئ · سرير ${p.bed}</span></div>
+    <p class="note" style="margin:0 0 10px">${extra}</p>
+    <div class="row"><button class="btn" onclick="openNurse('${p.mrn}',1)">افتحي كممرضة</button>${p.card?`<button class="btn ghost" onclick="U.fam='${p.mrn}';go('family')">بطاقة الأسرة</button>`:''}</div></div>`;
+  $('#app').innerHTML=`
+  <section class="hero">
+    <svg class="fp" width="220" height="220" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round"><path d="M12 3a8 8 0 0 0-8 8v2"/><path d="M20 13v-2a8 8 0 0 0-3-6.2"/><path d="M8 20c1-1.5 1.5-3.5 1.5-6v-2.5a2.5 2.5 0 0 1 5 0V14"/><path d="M12 11.5V15c0 2.5-.7 4.5-2 6"/><path d="M17 14c0 2.5-.4 4.5-1.2 6"/></svg>
+    <h1>بصمة</h1><div class="sub">من سلوك المريض إلى قرار سريري</div>
+    <p>منصة تحفظ الحالة المعتادة لكل مريض من ذوي الإعاقة الفكرية أو النمائية أو صعوبات التواصل، ثم تقارن حالته الآن بها، فتكشف للممرض ما تغيّر وهل يدل على ألم.</p>
+    <p class="note" style="color:#9fbdb8">هذا نموذج تجريبي لعرض الفكرة. كل الأسماء والبيانات افتراضية، ولا يتصل بأي نظام حقيقي.</p>
+    <div class="row" style="margin-top:14px"><button class="btn" style="background:#1f9e90" onclick="openNurse('10482',1)">ابدئي كممرضة مع سعد ←</button><button class="btn ghost" style="background:transparent;color:#fff;border-color:#ffffff55" onclick="newPatient()">أضيفي مريضًا جديدًا</button></div>
+  </section>
+  <div class="card" style="margin-top:18px"><div class="row"><h2 style="margin:0">مسار العرض المقترح</h2><span class="note">اضغطي أي خطوة للانتقال إليها</span></div>
+    <div class="path" style="margin-top:12px">${steps.map((s,i)=>`<div class="st" onclick="${s[2]()}"><small>الخطوة ${i+1}</small><b>${s[0]}</b><span class="note">${s[1]}</span></div>`).join('')}</div></div>
+  <h2 style="margin-top:22px">المرضى</h2>
+  <div class="grid g3">
+    ${pc(byMrn('10482'),'لا يتكلم ويتواصل بالإشارة والصور. وصل للطوارئ لأن سلوكه تغيّر.')}
+    ${pc(byMrn('20517'),'شلل دماغي وإعاقة عصبية شديدة، لا تتكلم ولا تفهم الصور. جرّبيها لتري كيف تختار المنصة مقياسًا مختلفًا (PPP).')}
+    <div class="card dashed"><h3>مريض بلا بطاقة</h3><p class="note">أدخلي أي رقم غير مسجل، مثل 55555، لتري أسئلة المرافق الأربعة السريعة، وتصبح إجاباته بداية بطاقته.</p><button class="btn ghost" onclick="openNurse('55555',1)">جرّبي الرقم 55555</button></div>
+    <div class="card dashed"><h3>مريض جديد</h3><p class="note">تعبّئ الأسرة بطاقة بصمة كاملة، ثم يسترجعها الممرض برقم الملف.</p><button class="btn" onclick="newPatient()">إنشاء بطاقة جديدة</button></div>
+  </div>
+  <div class="card row" style="margin-top:18px;background:#f2f8f7"><span class="note">كل ما تُدخلينه يُحفظ في هذا الجهاز فقط، ويبقى إذا أغلقت الصفحة وفتحتها مرة ثانية.</span><span class="sp"></span><button class="btn ghost sm" onclick="resetAll()">إعادة البيانات التجريبية</button></div>`;
+}
+function resetAll(){S=seed();save();toast('أُعيدت البيانات التجريبية');rr()}
+function newPatient(){U.famNew={id:'',mrn:String(70000+Math.floor(Math.random()*9999)),name:'',age:'',sex:'ذكر',dx:'',bed:Math.floor(Math.random()*15)+13,card:emptyCard(),diary:[],diarySum:'',episodes:[],v:emptyVisit(),_new:true};U.fam='__new';go('family')}
+
+/* ================= الأسرة ================= */
+function famP(){return U.fam==='__new'?U.famNew:byMrn(U.fam)}
+function completeness(p){const c=p.card;let n=0,t=0;const chk=v=>{t++;if(v&&(Array.isArray(v)?v.length:String(v).trim()))n++};chk(p.name);chk(p.mrn);chk(p.age);chk(c.comm.refuse);chk(c.pain.length||c.painOther);DOM.forEach(([k])=>chk(c.base[k]));chk(c.handle.comfort);chk(c.med.cond);chk(c.companion);chk(c.consent?'1':'');return Math.round(n/t*100)}
+function vFamily(){
+  const p=famP(); if(!p){U.fam='10482';return vFamily()}
+  if(!p.card)p.card=emptyCard();
+  const c=p.card, pct=completeness(p);
+  const f=(path,ph='')=>`<input type="text" value="${esc(get(path))}" placeholder="${ph}" oninput="setF('${path}',this.value,true)">`;
+  const tg=(path,label)=>`<button class="chip chk ${get(path)?'on':''}" onclick="setF('${path}',${!get(path)})">${label}</button>`;
+  const sec=(n,ic,t,body,cls='')=>`<div class="card ${cls}"><h3>${ic?`<span class="ic">${ic}</span>`:''}${n?n+'. ':''}${t}</h3>${body}</div>`;
+  const opts=S.patients.filter(x=>x.card||x.mrn===U.fam).map(x=>`<option value="${x.mrn}" ${x.mrn===U.fam?'selected':''}>${esc(x.name)} · ${x.mrn}</option>`).join('');
+  const tab=U.famTab||'card';
+  let body='';
+  if(tab==='diary'){
+    body=`<div class="card" style="margin-top:14px"><h3><span class="ic">📓</span>اليوميات</h3><p class="note" style="margin-top:0">ملاحظات قصيرة قبل الزيارة، من الأسرة أو مركز التأهيل أو المدرسة. يراها الممرض مع البطاقة، ومنها تُبنى «البداية» و«الأعراض المصاحبة».</p>
+      ${p.diarySum?`<div class="res amber" style="padding:8px 12px;margin-bottom:8px">${esc(p.diarySum)}</div>`:''}
+      <ul class="tl">${(p.diary||[]).map((d,i)=>`<li><time>${esc(d.t)}</time><span>${esc(d.x)} <span class="src">${esc(d.src||'الأسرة')}</span> <button class="btn ghost sm" style="padding:0 8px" onclick="delDiary(${i})">حذف</button></span></li>`).join('')||'<li><span class="note">لا توجد ملاحظات.</span></li>'}</ul>
+      <label class="f">ملاحظة جديدة</label><input type="text" id="diaryIn" placeholder="مثال: لم يتبرز منذ يومين">
+      <div class="row" style="margin-top:8px"><span class="note">المصدر:</span><select id="diarySrc" style="width:auto"><option>الأسرة</option><option>مركز التأهيل</option><option>المدرسة</option></select><span class="sp"></span><button class="btn" onclick="addDiary()">إضافة</button></div>
+      <label class="f">ملخص التغير (يظهر للممرض أولًا)</label><input type="text" value="${esc(p.diarySum)}" placeholder="مثال: تغيّر بدأ قبل 3 أيام: نوم أقل، ثم أكل أقل" oninput="famP().diarySum=this.value;save()"></div>`;
+  } else {
+    body=`<div class="card" style="margin-top:14px"><div class="row"><b>اكتمال البطاقة</b><span class="sp"></span><b>${pct}%</b></div><div class="progress" style="margin-top:6px"><span id="pbar" style="width:${pct}%"></span></div></div>
+  <div class="grid g2" style="margin-top:14px">
+    ${sec('','👤','بيانات المريض',`<div class="grid g2" style="gap:0 12px">
+        <div><label class="f">الاسم <span style="color:var(--red)">*</span></label>${f('name')}</div><div><label class="f">العمر (سنة)</label><input type="number" value="${esc(p.age)}" oninput="setF('age',this.value===''?'':+this.value,true)"></div>
+        <div><label class="f">الجنس</label><div class="seg"><button class="${p.sex==='ذكر'?'on':''}" onclick="setF('sex','ذكر')">ذكر</button><button class="${p.sex==='أنثى'?'on':''}" onclick="setF('sex','أنثى')">أنثى</button></div></div>
+        <div><label class="f">رقم الملف الطبي <span style="color:var(--red)">*</span></label>${f('mrn')}</div><div><label class="f">رقم الهوية</label>${f('id')}</div><div><label class="f">التشخيص</label>${f('dx')}</div></div>`)}
+    ${sec(1,'💬','طريقة التواصل',`<div class="chips">${tg('card.comm.speaks','يتكلم')}${tg('card.comm.sign','يستخدم الإشارة')}${tg('card.comm.pictures','يفهم الصور')}${tg('card.comm.points','يشير إلى المكان المؤلم أحيانًا')}</div>
+      <label class="f">كيف يعبّر عن الرفض أو الخوف؟</label>${f('card.comm.refuse','مثال: يهز رأسه ويبتعد')}`)}
+    ${sec(2,'🙂','السلوك المعتاد (وهو مرتاح)',`<p class="note" style="margin:0">هذا هو «خط الأساس» الذي يقارن به الممرض في الطوارئ.</p>${DOM.map(([k,t])=>`<label class="f">${t}</label>${f('card.base.'+k)}`).join('')}`)}
+    ${sec(3,'⚑','علامات الألم الخاصة به',`<p class="note" style="margin:0 0 8px">ماذا يفعل عادة إذا تألم؟</p><div class="chips">${PAIN_OPTS.map(o=>`<button class="chip chk ${c.pain.includes(o)?'on':''}" onclick="togPain('${o}')">${o}</button>`).join('')}</div><label class="f">علامة أخرى تعرفينها</label>${f('card.painOther')}`,'pcard')}
+    ${sec(4,'🤝','كيف أتعامل معه',`<label class="f">ما يزعجه</label>${f('card.handle.upset')}<label class="f">قبل لمسه</label>${f('card.handle.beforeTouch')}<label class="f">ما يريحه</label>${f('card.handle.comfort')}`,'hcard')}
+    ${sec(5,'🩺','الخلفية الطبية',`<label class="f">الأمراض والأدوية والأجهزة</label>${f('card.med.cond')}<label class="f">مصادر الألم المتكررة</label>${f('card.med.recur','مثال: إمساك متكرر، الأسنان')}<label class="f">الحساسية</label>${f('card.med.allergy')}`)}
+    ${sec(6,'🎥','فيديو البصمة (اختياري)',`<p class="note" style="margin-top:0">مقطع 15 ثانية والمريض مرتاح، يُستخدم مرجعًا لوجهه هو. لا يُرسل إلا بموافقة الأسرة.</p>
+      <div class="row"><button class="btn ghost" onclick="recVideo(this)">● تسجيل مقطع 15 ثانية</button>${c.video?'<span class="pill p-green">✓ محفوظ · 15 ثانية</span>':''}</div><p class="note">في النموذج التجريبي يُحاكى التسجيل ولا تُفتح الكاميرا.</p>`)}
+    ${sec(7,'👤','المرافق المخوّل',`<label class="f">الاسم وصلة القرابة</label>${f('card.companion')}
+      <div style="margin-top:12px"><button class="chip chk ${c.consent?'on':''}" style="width:100%;text-align:right;padding:10px 14px" onclick="setF('card.consent',${!c.consent})">أوافق على إنشاء البطاقة وحفظها في ملفه الصحي</button></div>`)}
+  </div>
+  <div class="row" style="margin-top:16px">
+    <button class="btn" onclick="saveCard()">حفظ البطاقة</button>
+    ${U.fam==='10482'?`<button class="btn ghost" onclick="restoreSaad()">إرجاع بيانات سعد الأصلية</button>`:''}
+    <button class="btn ghost" onclick="clearCard()">تفريغ البطاقة</button>
+    ${U.fam!=='__new'?`<button class="btn ghost" onclick="openNurse('${p.mrn}',1)">افتحيها كممرضة ←</button>`:''}</div>
+  <div style="margin-top:10px">${c.updated?`<span class="pill p-green" style="white-space:normal">✓ محفوظة · آخر تحديث ${fmtDate(c.updated)} · المصدر: ${esc(c.by||c.companion||'الأسرة')}</span>`:'<span class="pill p-gray">لم تُحفظ بعد</span>'}</div>`;
+  }
+  $('#app').innerHTML=`<h1>واجهة الأسرة</h1><p class="muted" style="margin:0">تعبّئ الأسرة بطاقة البصمة مرة واحدة من رابط يصلها برسالة نصية، وتكتب يوميات قصيرة. كل معلومة تُحفظ مع مصدرها وتاريخها.</p>
+  <div class="card" style="margin-top:14px"><div class="row"><b>المريض:</b><select style="flex:1;min-width:180px" onchange="U.fam=this.value;rr()">${U.fam==='__new'?'<option selected>مريض جديد</option>':''}${opts}</select></div>
+   <div class="ftabs"><button class="${tab==='card'?'on':''}" onclick="U.famTab='card';rr()">بطاقة البصمة</button><button class="${tab==='diary'?'on':''}" onclick="U.famTab='diary';rr()">اليوميات</button></div></div>
+  ${body}`;
+  function get(path){return path.split('.').reduce((a,k)=>a?.[k],p)}
+}
+function setF(path,val,noRender){const p=famP();const ks=path.split('.');let a=p;ks.slice(0,-1).forEach(k=>a=a[k]);a[ks.at(-1)]=val;if(!noRender)rr();else{const b=$('#pbar');if(b)b.style.width=completeness(p)+'%'}}
+function togPain(o){const c=famP().card;c.pain=c.pain.includes(o)?c.pain.filter(x=>x!==o):[...c.pain,o];rr()}
+function recVideo(b){b.disabled=true;let s=15;b.textContent='● جارٍ التسجيل… '+s;const h=setInterval(()=>{s-=3;b.textContent='● جارٍ التسجيل… '+Math.max(s,0);if(s<=0){clearInterval(h);famP().card.video=true;toast('حُفظ فيديو البصمة');rr()}},250)}
+function addDiary(){const v=$('#diaryIn').value.trim();if(!v)return;const p=famP();const d=new Date();const days=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];p.diary.unshift({t:days[d.getDay()]+' '+hm(d),x:v,src:$('#diarySrc').value});if(!p.diarySum)p.diarySum='تغيّر لاحظته الأسرة: '+v;if(!p._new)save();rr()}
+function delDiary(i){const p=famP();p.diary.splice(i,1);if(!p._new)save();rr()}
+function saveCard(){
+  const p=famP();
+  if(!String(p.name).trim()||!String(p.mrn).trim()){toast('الاسم ورقم الملف الطبي مطلوبان');return}
+  if(!p.card.consent){toast('نحتاج موافقة الأسرة على إنشاء البطاقة');return}
+  p.card.updated=Date.now();p.card.by=p.card.companion||'الأسرة';p.card.temp=false;
+  if(p._new){if(byMrn(p.mrn)){toast('رقم الملف مستخدم، غيّريه');return}delete p._new;if(!p.id)p.id='10'+Math.floor(Math.random()*1e8);p.v=emptyVisit();S.patients.push(p);U.fam=p.mrn;U.famNew=null}
+  save();toast('تم حفظ بطاقة البصمة ✓ يمكنكم تحديثها في أي وقت من الرابط نفسه.');rr();
+}
+function restoreSaad(){const s=seed().patients[0];const i=S.patients.findIndex(p=>p.mrn==='10482');S.patients[i]=s;save();toast('أُعيدت بيانات سعد الأصلية');rr()}
+function clearCard(){const p=famP();p.card=emptyCard();p.diary=[];p.diarySum='';if(!p._new)save();rr()}
+
+/* ================= الممرض ================= */
+function vNurse(){
+  const p=U.nurse?byMrn(U.nurse):null;
+  let h=`<div class="eyebrow">واجهة الممرض</div><h1>استرجاع البطاقة، ثم المقارنة السريعة وتقييم الألم والمتابعة</h1>
+  <div class="card" style="margin-top:12px"><form class="row" onsubmit="event.preventDefault();nurseSearch(this.q.value)"><input name="q" type="text" placeholder="رقم الهوية أو رقم الملف الطبي" style="flex:1"><button class="btn">استرجاع</button></form>
+   <div class="row" style="margin-top:8px"><span class="note">جرّبي:</span>${[['10482','سعد'],['20517','ريم'],['55555','بلا بطاقة']].map(([m,n])=>`<button class="chip" onclick="nurseSearch('${m}')">${m} · ${n}</button>`).join('')}</div>
+   ${U.search?`<p style="color:var(--red);margin:8px 0 0">${U.search}</p>`:''}</div>`;
+  if(!p){$('#app').innerHTML=h;return}
+  const c=p.card;
+  h+=`<div class="card" style="margin-top:12px"><div class="row"><div class="av">${esc(p.name[0])}</div><div><b style="font-size:18px">${esc(p.name)}</b> <span class="note">(مريض افتراضي)</span><div class="note">${p.age<18?'طفل':'بالغ'} · ${p.age} سنة · ${esc(p.dx)} · ${c&&!c.comm.speaks?'لا يتكلم · ':''}ملف ${p.mrn} · سرير ${p.bed}</div></div><span class="sp"></span>
+    ${c?`<span class="pill p-green">● بطاقة بصمة${c.temp?' مؤقتة':''}</span>${c.video?'<span class="pill p-teal">▶ فيديو البصمة</span>':''}<span class="pill p-gray">${c.updated?'آخر تحديث '+fmtDate(c.updated):''}${c.by?' · المصدر: '+esc(c.by):''}</span>${monthsSince(c.updated)>=6?'<span class="pill p-amber">قديمة: تأكدي مع المرافق</span>':''}`:'<span class="pill p-red">بلا بطاقة</span>'}</div></div>`;
+  if(!c){$('#app').innerHTML=h+quickQs(p);return}
+  const v=p.v, e=evalCmp(v.cmp), done={1:true,2:!!v.cmpSaved,3:!!v.painSaved,4:v.hiddenSaved,5:!!v.reassessed};
+  const names=['البطاقة','المقارنة السريعة','تقييم الألم','الأسباب الخفية','المتابعة'];
+  h+=`<div class="card" style="margin-top:12px;padding:0"><div class="stepper">${names.map((n,i)=>`<button class="${U.step===i+1?'on':''} ${done[i+1]&&U.step!==i+1?'done':''}" onclick="U.step=${i+1};rr()"><i>${done[i+1]&&U.step!==i+1?'✓':i+1}</i>${n}</button>`).join('')}</div><div style="padding:18px">`;
+  h+=[,stCard,stCmp,stPain,stHidden,stFollow][U.step](p,v,e);
+  const prev=U.step>1?`<button class="btn ghost" onclick="U.step--;rr()">→ السابق</button>`:'<span></span>';
+  const nxt=U.step<5?`<button class="btn dark" onclick="U.step++;rr()">التالي: ${names[U.step]} ←</button>`:`<button class="btn dark" onclick="go('dashboard')">لوحة التحكم ←</button>`;
+  h+=`<div class="row" style="margin-top:18px;border-top:1px solid var(--line);padding-top:14px">${prev}<span class="sp"></span><button class="btn ghost" onclick="U.doc='${p.mrn}';go('doctor')">ملخص الطبيب</button><span class="sp"></span>${nxt}</div></div></div>`;
+  $('#app').innerHTML=h;
+}
+function nurseSearch(q){const p=findQ(q);if(!p){U.search='لا يوجد مريض بهذا الرقم. أدخلي 55555 لتجربة مريض بلا بطاقة.';rr();return}U.search='';U.nurse=p.mrn;U.step=1;rr()}
+function quickQs(p){const q=U.quick;return `<div class="card" style="margin-top:12px;max-width:640px"><h2>لا توجد بطاقة: أربعة أسئلة سريعة للمرافق</h2><p class="muted" style="margin:0">إجاباته تصبح بداية بطاقة مؤقتة، ولا يتأخر الفرز. وتُرسل للأسرة لاحقًا لاستكمالها.</p>
+  ${[['comm','1. كيف يتواصل عادة؟','مثال: بالإشارة، ولا يتكلم'],['calm','2. كيف يكون وهو مرتاح؟','مثال: يتحرك كثيرًا ويتفاعل معنا'],['pain','3. كيف يظهر ألمه عادة؟','مثال: يمسك المكان المؤلم'],['diff','4. هل تغيّر شيء عن عادته اليوم؟','مثال: هادئ على غير عادته منذ الصباح']].map(([k,l,ph])=>`<label class="f">${l}</label><input type="text" value="${esc(q[k])}" placeholder="${ph}" oninput="U.quick.${k}=this.value">`).join('')}
+  <button class="btn" style="margin-top:14px" onclick="makeTemp()">إنشاء بطاقة مؤقتة وبدء المقارنة</button></div>`}
+function makeTemp(){const p=byMrn(U.nurse),q=U.quick;const c=emptyCard();c.comm.speaks=!/لا يتكلم|ما يتكلم/.test(q.comm)&&/يتكلم/.test(q.comm);c.comm.sign=/إشار/.test(q.comm);c.comm.pictures=/صور/.test(q.comm);c.comm.refuse='';c.painOther=q.pain;c.base.move=q.calm;c.base.social=q.calm?'':'';c.companion='المرافق الحالي';c.updated=Date.now();c.by='المرافق (أسئلة سريعة)';c.temp=true;c.consent=true;p.card=c;if(q.diff){p.diarySum='تغير ذكره المرافق: '+q.diff;p.diary=[{t:'اليوم',x:q.diff}]}addTL(p,'أُنشئت بطاقة مؤقتة من أسئلة المرافق الأربعة، وأُرسل رابط للأسرة لاستكمالها');save();toast('أُنشئت بطاقة مؤقتة');U.step=1;rr()}
+
+function stCard(p,v){
+  const c=p.card,src=s=>`<span class="src">${s}</span>`,val=x=>x?esc(x):'<span class="note">غير متوفر</span>';
+  const comm=[c.comm.speaks?'يتكلم':'لا يتكلم',c.comm.sign&&c.comm.pictures?'يتواصل بالإشارة والصور':c.comm.sign?'يتواصل بالإشارة':c.comm.pictures?'يتواصل بالصور':'',c.comm.points?'يشير إلى المكان المؤلم أحيانًا':''].filter(Boolean).join('. ')+'.';
+  return `<h2>بطاقة البصمة</h2><p class="muted" style="margin-top:0">اقرئيها في أقل من 30 ثانية، وطبّقي «كيف أتعامل معه» قبل أن تلمسيه.</p>
+  <div class="grid g3">
+    <div class="card hcard"><h3><span class="ic">🤝</span>كيف أتعامل معه</h3>${c.handle.upset?`<div>يزعجه ${esc(c.handle.upset)}.</div>`:''}${c.handle.beforeTouch?`<div>قبل لمسه: ${esc(c.handle.beforeTouch)}.</div>`:''}${c.handle.comfort?`<div>ما يريحه: ${esc(c.handle.comfort)}.</div>`:''}${!c.handle.upset&&!c.handle.beforeTouch&&!c.handle.comfort?'<span class="note">غير متوفر</span>':''}${src('إفادة الأسرة')}</div>
+    <div class="card"><h3><span class="ic">💬</span>طريقة التواصل</h3><div>${esc(comm)} ${c.comm.refuse?esc(c.comm.refuse):''}</div>${src(c.temp?'المرافق':'إفادة الأسرة')}</div>
+    <div class="card pcard"><h3><span class="ic">⚑</span>علامات الألم المعروفة عنه</h3>${[...c.pain,c.painOther].filter(Boolean).map(x=>`<div>${esc(x)}</div>`).join('')||'<span class="note">غير متوفر</span>'}${src(c.temp?'المرافق':'إفادة الأسرة')}</div>
+    <div class="card"><h3><span class="ic">🙂</span>السلوك المعتاد</h3>${DOM.map(([k,t])=>c.base[k]?`<div>${esc(c.base[k])} <span class="note">(${t})</span></div>`:'').join('')||'<span class="note">غير متوفر</span>'}${src('إفادة الأسرة')}</div>
+    <div class="card"><h3><span class="ic">🩺</span>الخلفية الطبية</h3><div>${val(c.med.cond)}</div><div>${c.med.recur?esc(c.med.recur):''}</div><div>الحساسية: ${val(c.med.allergy)}</div>${src('الملف الطبي')}</div>
+    <div class="card"><h3><span class="ic">👤</span>المرافق المخوّل</h3><div>${val(c.companion)}</div><div class="note">رقم التواصل محفوظ في الملف.</div></div>
+  </div>
+  ${p.diary?.length||p.episodes?.length?`<div class="card" style="margin-top:14px"><h3>📓 اليوميات</h3>${p.diarySum?`<div class="res amber" style="margin-bottom:8px;padding:8px 12px">${esc(p.diarySum)}</div>`:''}<ul class="tl">${p.diary.map(d=>`<li><time>${esc(d.t)}</time><span>${esc(d.x)} <span class="src">${esc(d.src||'الأسرة')}</span></span></li>`).join('')}</ul>
+    ${p.episodes?.length?`<h4 style="margin-top:10px">ذاكرة النوبات السابقة</h4>${p.episodes.map(e=>`<div class="note">• ${esc(e.date)}: ${esc(e.cause)}. العلامات: ${esc(e.signs)}</div>`).join('')}`:''}</div>`:''}
+  <div class="row" style="margin-top:14px"><button class="btn ghost" onclick="toast('أُرسل رابط تحديث البطاقة للمرافق برسالة نصية')">طلب تحديث من الأسرة</button><button class="btn" onclick="applyHandle()">طبّقت «كيف أتعامل معه» - ابدئي المقارنة</button></div>`;
+}
+function applyHandle(){const p=byMrn(U.nurse);if(!p.v.tl.find(t=>t.x.startsWith('تطبيق')))addTL(p,'تطبيق «كيف أتعامل معه»: '+(p.card.handle.comfort||'حسب البطاقة'));if(!p.v.tl.find(t=>t.x.startsWith('استرجاع')))p.v.tl.unshift({t:Date.now()-60000,x:'استرجاع بطاقة البصمة واليوميات برقم الملف'});save();U.step=2;rr()}
+
+function stCmp(p,v,e){
+  if(!v.cmpStart){v.cmpStart=Date.now()}
+  const c=p.card;
+  return `<div class="split">
+  <div><h2>المقارنة السريعة: مثل عادته أم متغير؟</h2><p class="muted" style="margin-top:0">ما لم يتغير يكفيه «مثل عادته». المتغير فقط يُفتح للتفصيل.</p>
+  <table class="ctab"><thead><tr><th>المجال</th><th>المعتاد (من البطاقة)</th><th>الآن</th><th>ماذا تغيّر؟</th></tr></thead><tbody>
+  ${DOM.map(([k,t])=>{const d=v.cmp[k]||{};return `<tr><td><b>${t}</b></td><td class="muted"><span class="note">المعتاد: </span>${esc(c.base[k])||'غير موثق'}</td>
+   <td><div class="seg"><button class="${d.s==='same'?'on-s':''}" onclick="setCmp('${k}','same')">مثل عادته</button><button class="${d.s==='changed'?'on-c':''}" onclick="setCmp('${k}','changed')">متغير</button></div></td>
+   <td>${d.s==='changed'?`<input type="text" placeholder="اكتبي ما تغيّر" value="${esc(d.n)}" oninput="byMrn(U.nurse).v.cmp['${k}'].n=this.value;save()"><label class="note" style="display:flex;gap:6px;align-items:center;margin-top:4px"><input type="checkbox" ${d.m?'checked':''} onchange="byMrn(U.nurse).v.cmp['${k}'].m=this.checked;save();rr()"> علامة ألم معروفة عنه</label>`:'<span class="note">—</span>'}</td></tr>`}).join('')}
+  </tbody></table>
+  <button class="btn ghost sm" style="margin-top:10px" onclick="allSame()">باقي المجالات مثل عادته</button></div>
+  <div class="grid">
+    <div class="res ${e.c}"><b class="t">${e.t}</b><div style="font-size:14px">${e.x}</div></div>
+    ${e.c!=='gray'?`<div class="card"><h4>الإجراء المقترح</h4><ol style="margin:0;padding-inline-start:20px;font-size:14px">${suggestedActions(e).map(a=>`<li>${a}</li>`).join('')}</ol></div>`:''}
+    <div class="card"><div class="note">وقت المقارنة: <b id="cmpTimer">${v.cmpSecs!=null?fmtSecs(v.cmpSecs):'0:00'}</b> · الهدف أقل من دقيقة</div><div class="note" style="margin-top:6px">تنبيه للفريق الصحي، وليس تشخيصًا. القرار للممرض والطبيب.</div></div>
+    <button class="btn dark" ${e.ans.length<DOM.length?'disabled title="أكملي كل المجالات"':''} onclick="saveCmp()">حفظ النتيجة وتقييم الألم ←</button>
+  </div></div>`;
+}
+const fmtSecs=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+setInterval(()=>{const el=$('#cmpTimer');if(!el||U.step!==2)return;const p=byMrn(U.nurse);if(!p||p.v.cmpSecs!=null||!p.v.cmpStart)return;el.textContent=fmtSecs(Math.floor((Date.now()-p.v.cmpStart)/1000))},1000);
+function setCmp(k,s){const v=byMrn(U.nurse).v;v.cmp[k]=s==='same'?{s}:{...(v.cmp[k]||{}),s};save();rr()}
+function allSame(){const v=byMrn(U.nurse).v;DOM.forEach(([k])=>{if(!v.cmp[k]?.s)v.cmp[k]={s:'same'}});save();rr()}
+function saveCmp(){const p=byMrn(U.nurse),v=p.v,e=evalCmp(v.cmp);v.cmpSecs=Math.floor((Date.now()-(v.cmpStart||Date.now()))/1000);v.cmpSaved=Date.now();v.history.push({t:Date.now(),c:e.ch.length});
+  addTL(p,`المقارنة السريعة: ${e.ch.length?(e.ch.length===1?'مجال واحد متغير':e.ch.length+' مجالات متغيرة'):'لا تغير'} - ${COLOR_AR[e.c]}${e.c==='red'?' - احتمال ألم':''}`);save();toast('حُفظت النتيجة: '+COLOR_AR[e.c]);U.step=e.c==='green'?5:3;rr()}
+
+function faceSvg(i,col){const m=[ 'M7 14 Q12 18 17 14','M7.5 14.5 Q12 16.5 16.5 14.5','M8 15 L16 15','M7.5 16 Q12 13.5 16.5 16','M7 17 Q12 12.5 17 17'][i];const br=i>=3?`<path d="M6.5 7.5 L10 9" stroke="#3a1a12" stroke-width="1.3"/><path d="M17.5 7.5 L14 9" stroke="#3a1a12" stroke-width="1.3"/>`:'';return `<svg width="34" height="34" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="${col}"/>${br}<circle cx="8.5" cy="10.5" r="1.3" fill="#3a1a12"/><circle cx="15.5" cy="10.5" r="1.3" fill="#3a1a12"/><path d="${m}" stroke="#3a1a12" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>`}
+function bodyFig(loc){const on=k=>loc.includes(k)?'on':'';return `<svg viewBox="0 0 100 230" width="110"><circle class="reg ${on('head')||on('mouth')||on('ear')}" cx="50" cy="24" r="18"/><rect class="reg ${on('chest')||on('back')}" x="28" y="46" width="44" height="44" rx="10"/><rect class="reg ${on('abd')}" x="30" y="92" width="40" height="38" rx="9"/><rect class="reg ${on('hand')}" x="10" y="48" width="14" height="80" rx="7"/><rect class="reg ${on('hand')}" x="76" y="48" width="14" height="80" rx="7"/><rect class="reg ${on('leg')}" x="31" y="134" width="17" height="92" rx="8"/><rect class="reg ${on('leg')}" x="52" y="134" width="17" height="92" rx="8"/></svg>`}
+function stPain(p,v){
+  const sc=recScale(p),q=v.q,b=v.board,sl=sevLabel(sc,v.score);
+  const ex=q.express??(p.card.comm.speaks?'yes':(p.card.comm.pictures?'partial':'no'));
+  const showBoard=ex!=='no';
+  const rb=(k)=>{const r=REGIONS.find(x=>x[0]===k);return `<button class="bbtn ${b.loc.includes(k)?'on':''}" onclick="togLoc('${k}')">${r[1]}</button>`};
+  return `<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));align-items:start">
+  <div class="grid">
+    <div class="card"><h3>اختيار طريقة تقييم الألم</h3>
+      <label class="f">1. هل يستطيع التعبير عن ألمه بنفسه؟</label><div class="seg">${[['yes','نعم'],['partial','جزئيًا بالصور'],['no','لا']].map(([k,l])=>`<button class="${ex===k?'on':''}" onclick="byMrn(U.nurse).v.q.express='${k}';save();rr()">${l}</button>`).join('')}</div>
+      <label class="f">2. العمر</label><span class="pill p-gray">${p.age<18?'طفل':'بالغ'} · ${p.age} سنة</span>
+      <label class="f">3. نوع الألم</label><div class="seg"><button class="${q.acute?'on':''}" onclick="byMrn(U.nurse).v.q.acute=true;save();rr()">حاد وجديد</button><button class="${!q.acute?'on':''}" onclick="byMrn(U.nurse).v.q.acute=false;save();rr()">مزمن أو متكرر</button></div></div>
+    <div class="card" style="border:2px solid var(--teal)"><div class="note">المقياس المقترح</div><h2 style="font-size:28px;margin:2px 0">${sc.name}</h2><div class="note" style="direction:ltr;text-align:right">${sc.full}</div><div class="note">${sc.desc}</div>
+      <p style="margin:8px 0"><b>السبب:</b> ${sc.why}</p>
+      <div class="row card" style="padding:10px"><b>درجة المقياس</b><span class="sp"></span><input type="number" min="0" ${sc.max?`max="${sc.max}"`:''} style="width:110px" value="${esc(v.score)}" oninput="byMrn(U.nurse).v.score=this.value;save();updSev()"></div>
+      <div id="sevl" style="margin-top:6px">${sl?`<span class="pill p-${sl.c}">${sl.t}</span>`:''}</div>
+      <p class="note">أدخلي الدرجة من ورقة المقياس المعتمدة${sc.max?'':'، ولا تُحوّل إلى درجة من 10 لأنهما قياسان مختلفان'}.</p></div>
+    ${b.loc.length||b.sev!==null?`<div class="card"><b>ما لاحظه من لوحة الصور:</b> الموقع: ${locNames(b).join('، ')||'—'}. الشدة: ${b.sev==='none'?'لم يحدد':b.sev!==null?FACES[b.sev][0]:'—'}.${b.wants.length?' يريد: '+b.wants.join('، ')+'.':''} <span class="src">المريض</span></div>`:''}
+    <button class="btn dark" onclick="savePain()">حفظ التقييم والانتقال للأسباب الخفية ←</button>
+  </div>
+  ${showBoard?`<div class="phone"><div class="row"><b>بصمة</b><span class="sp"></span><span class="pill p-teal">لوحة الصور · يستخدمها المريض</span></div>
+    <h2 style="text-align:center;margin-top:10px">وين يوجعك؟</h2>
+    <div class="board-grid"><div>${['head','mouth','ear','chest'].map(rb).join('')}</div><div style="text-align:center">${bodyFig(b.loc)}</div><div>${['abd','back','hand','leg'].map(rb).join('')}</div></div>
+    <h2 style="text-align:center;margin-top:12px">كم يوجعك؟</h2>
+    <div class="faces">${FACES.map((f,i)=>`<button class="face ${b.sev===i?'on':''}" onclick="setSev(${i})">${faceSvg(i,f[1])}<div>${f[0]}</div></button>`).join('')}</div>
+    <button class="bbtn ${b.sev==='none'?'on':''}" onclick="setSev('none')" style="font-weight:600">لم يستطع اختيار الشدة</button>
+    <h2 style="text-align:center;margin-top:12px">أبي</h2>
+    <div class="wants">${WANTS.map(([i,l])=>`<button class="face ${b.wants.includes(l)?'on':''}" onclick="togWant('${l}')"><div style="font-size:24px">${i}</div>${l}</button>`).join('')}</div></div>`
+  :`<div class="card"><h3>لوحة الصور غير مناسبة له</h3><p class="muted">حسب البطاقة لا يفهم الصور ولا يستطيع التعبير، فيُعتمد المقياس السلوكي المقترح والملاحظة والفحص.</p><label class="f">موقع الألم المحتمل (من ملاحظة الممرض)</label><div class="chips">${REGIONS.map(([k,l])=>`<button class="chip ${b.loc.includes(k)?'on':''}" onclick="togLoc('${k}')">${l}</button>`).join('')}</div></div>`}
+  </div>`;
+}
+function updSev(){const p=byMrn(U.nurse),sl=sevLabel(recScale(p),p.v.score);$('#sevl').innerHTML=sl?`<span class="pill p-${sl.c}">${sl.t}</span>`:''}
+function togLoc(k){const b=byMrn(U.nurse).v.board;b.loc=b.loc.includes(k)?b.loc.filter(x=>x!==k):[...b.loc,k];save();rr()}
+function setSev(i){const b=byMrn(U.nurse).v.board;b.sev=b.sev===i?null:i;save();rr()}
+function togWant(l){const b=byMrn(U.nurse).v.board;b.wants=b.wants.includes(l)?b.wants.filter(x=>x!==l):[...b.wants,l];save();rr()}
+function savePain(){const p=byMrn(U.nurse),v=p.v,sc=recScale(p);v.painSaved=Date.now();v.scale=sc.name;
+  if(v.board.loc.length)addTL(p,'لوحة الصور: '+locNames(v.board).join('، ')+(v.board.sev!==null&&v.board.sev!=='none'?' · '+FACES[v.board.sev][0]:''));
+  if(v.score!=='')addTL(p,`تقييم الألم: ${sc.name} ${v.score}${sc.max?' من '+sc.max:''}`);
+  save();toast('حُفظ تقييم الألم');U.step=4;rr()}
+
+function stHidden(p,v){
+  const A=autoOpq(p), hc=hiddenCauses(p);
+  if(!v.hiddenInit){v.hidden=hc.slice(0,3).map(h=>h.n);v.hiddenInit=true}
+  return `<h2>الأسباب الخفية: ابحثي عن السبب بدل التخمين</h2><p class="muted" style="margin-top:0">عناصر تقييم الألم مملوءة تلقائيًا من البطاقة واليوميات ولوحة الصور. عدّلي أي عنصر عند الحاجة.</p>
+  <h3>عناصر تقييم الألم</h3><div style="overflow-x:auto"><table><thead><tr><th style="width:150px">العنصر</th><th>ما وُثّق</th><th style="width:140px">المصدر</th></tr></thead><tbody>
+  ${OPQ.map(([k,l])=>{const val=v.opq[k]??A[k][0];const s=v.opq[k]!=null&&v.opq[k]!==A[k][0]?'الممرض':A[k][1];return `<tr><td><b>${l}</b></td><td><input type="text" value="${esc(val)}" placeholder="—" oninput="byMrn(U.nurse).v.opq['${k}']=this.value;save()"></td><td>${s?`<span class="src">${s}</span>`:'<span class="note">—</span>'}</td></tr>`}).join('')}
+  </tbody></table></div>
+  <h3 style="margin-top:18px">الأسباب الخفية المقترحة للفحص</h3><p class="note" style="margin-top:0">مرتبة حسب ملفه وموقع الألم ونوباته السابقة. للفحص فقط، وليست تشخيصًا.</p>
+  <div class="grid g2">${hc.map(h=>`<label class="card" style="display:flex;gap:10px;cursor:pointer;padding:12px"><input type="checkbox" ${v.hidden.includes(h.n)?'checked':''} onchange="togHidden('${esc(h.n)}')"><div><b>${esc(h.n)}</b><div class="note">${esc(h.w)}</div></div></label>`).join('')}</div>
+  <button class="btn dark" style="margin-top:14px" onclick="saveHidden()">حفظ التقييم والأسباب الخفية ←</button>`;
+}
+function togHidden(n){const v=byMrn(U.nurse).v;v.hidden=v.hidden.includes(n)?v.hidden.filter(x=>x!==n):[...v.hidden,n];save()}
+function saveHidden(){const p=byMrn(U.nurse),v=p.v;v.hiddenSaved=true;if(v.hidden.length)addTL(p,'أسباب خفية للفحص: '+v.hidden.join('، '));save();toast('حُفظ التقييم والأسباب الخفية');U.step=5;rr()}
+
+function reassessResult(p){const v=p.v,e=evalCmp(v.cmp);const ch=e.ch.map(([k])=>k);if(!ch.length)return null;const vals=ch.map(k=>v.after[k]||'');if(vals.some(x=>!x))return null;
+  const still=ch.filter(k=>v.after[k]==='same').map(k=>DOM.find(d=>d[0]===k)[1]);const partial=ch.filter(k=>v.after[k]==='better').map(k=>DOM.find(d=>d[0]===k)[1]);
+  if(vals.every(x=>x==='back'))return {c:'green',t:'تحسن واضح - عاد لعادته',x:'كل المجالات المتغيرة عادت لعادته.'};
+  if(vals.every(x=>x==='same'))return {c:'red',t:'لم يتحسن - أبلغي الطبيب',x:'ما زالت كل المجالات متغيرة بعد التدخل.'};
+  return {c:'amber',t:'تحسن جزئي - يكمل الطبيب الفحص',x:'ما زال متغيرًا: '+[...still,...partial].join('، ')};
+}
+function stFollow(p,v,e){
+  const sc=recScale(p), ch=e.ch, rr2=reassessResult(p);
+  const causes=[...new Set([...v.hidden,...hiddenCauses(p).map(h=>h.n),'التهاب المسالك البولية','لم يُحدد سبب واضح'])];
+  return `<div class="row"><div><h2>المتابعة: التدخل وإعادة التقييم</h2><p class="muted" style="margin:0">بعد المسكن حسب أمر الطبيب أو أي تدخل غير دوائي، أعيدي التقييم في الوقت الذي تحدده سياسة المستشفى.</p></div><span class="sp"></span><button class="btn ghost sm" onclick="closeVisit()">${p.mrn==='10482'?'إغلاق مثال سعد':'إغلاق الزيارة'}</button></div>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));margin-top:14px;align-items:start">
+   <div class="grid">
+    <div class="card"><div class="row">${v.interv?`<span>${esc(v.interv.x)} الساعة ${hm(v.interv.t)} · إعادة التقييم عند <b>${hm(v.due)}</b></span><span class="sp"></span><button class="btn ghost sm" onclick="dueNow()">تعديل الوقت إلى الآن</button>`:`<span class="note">لم يُسجّل تدخل بعد.</span><span class="sp"></span><button class="btn sm" onclick="giveMed()">تسجيل إعطاء المسكن حسب أمر الطبيب</button>`}</div>
+      <div class="row" style="margin-top:8px"><input type="text" id="nonDrug" placeholder="أو تدخل غير دوائي: مثال: تغيير الوضعية، إضاءة خافتة" style="flex:1"><button class="btn ghost sm" onclick="giveOther()">تسجيل</button></div></div>
+    <div class="card"><h3>قبل التدخل وبعده</h3>${ch.length?`<div style="overflow-x:auto"><table><thead><tr><th>المجال</th><th>المعتاد</th><th>عند الوصول</th><th>بعد التدخل</th></tr></thead><tbody>
+      ${ch.map(([k,t])=>`<tr><td><b>${t}</b></td><td class="muted">${esc(p.card.base[k])||'—'}</td><td>${esc(v.cmp[k].n)||'متغير'}</td><td><select onchange="byMrn(U.nurse).v.after['${k}']=this.value;save();rr()" style="min-width:110px"><option value="">اختاري</option><option value="same" ${v.after[k]==='same'?'selected':''}>كما هو</option><option value="better" ${v.after[k]==='better'?'selected':''}>تحسّن</option><option value="back" ${v.after[k]==='back'?'selected':''}>عاد لعادته</option></select></td></tr>`).join('')}
+      </tbody></table></div>`:'<p class="note">لا توجد مجالات متغيرة في المقارنة.</p>'}
+      <div class="row" style="margin-top:10px"><b>درجة ${sc.name} بعد التدخل</b><span class="note">(قبل: ${v.score!==''?esc(v.score):'—'})</span><span class="sp"></span><input type="number" min="0" style="width:100px" value="${esc(v.afterScore)}" oninput="byMrn(U.nurse).v.afterScore=this.value;save()"></div>
+      ${rr2?`<div class="res ${rr2.c}" style="margin-top:12px"><b class="t">${rr2.t}</b><div style="font-size:14px">${esc(rr2.x)}</div><div class="note" style="margin-top:4px">تحسّن العلامات بعد المسكن يدعم أن السبب ألم، لكنه وحده لا يثبته.</div></div>`:''}
+      <div class="row" style="margin-top:10px"><span class="sp"></span><button class="btn" ${!rr2?'disabled title="اختاري حالة كل مجال بعد التدخل"':''} onclick="saveReassess()">${v.reassessed?'حفظ إعادة التقييم (حُفظت '+hm(v.reassessed)+')':'حفظ إعادة التقييم'}</button></div></div>
+    <div class="card"><h3>عند الخروج: حفظ النوبة في الذاكرة</h3><label class="f">السبب النهائي (من تشخيص الخروج بعد مراجعة الطبيب)</label>
+      <div class="row"><select id="fc" style="flex:1"><option value="">اختاري السبب</option>${causes.map(cn=>`<option ${v.finalCause===cn?'selected':''}>${esc(cn)}</option>`).join('')}</select><button class="btn" onclick="saveEpisode()">حفظ النوبة</button>${v.episodeSaved?'<span class="pill p-green">✓ حُفظت في ذاكرة النوبات</span>':''}</div>
+      <p class="note">في المرة القادمة إذا تكررت العلامات نفسها، يظهر هذا السبب أولًا في الأسباب الخفية.</p>
+      <div class="row"><button class="btn ghost sm" onclick="discharge()">إنهاء الزيارة (خروج المريض)</button><span class="note">تُحفظ زيارة جديدة فارغة، وتبقى البطاقة والنوبات المحفوظة.</span></div></div>
+   </div>
+   <div class="card"><h3>السجل الزمني</h3><ul class="tl">${v.tl.map(t=>`<li><time>${hm(t.t)}</time><span>${esc(t.x)}</span></li>`).join('')||'<li><span class="note">لا توجد أحداث بعد.</span></li>'}</ul>
+     <button class="btn ghost sm" style="margin-top:10px" onclick="U.doc='${p.mrn}';go('doctor')">عرض ملخص الطبيب ←</button></div>
+  </div>`;
+}
+function giveMed(){const p=byMrn(U.nurse);p.v.interv={t:Date.now(),x:'أُعطي مسكن حسب أمر الطبيب'};p.v.due=Date.now()+30*MIN;addTL(p,'أُعطي مسكن حسب أمر الطبيب');save();toast('سُجّل التدخل · إعادة التقييم بعد 30 دقيقة');rr()}
+function giveOther(){const x=$('#nonDrug').value.trim();if(!x)return;const p=byMrn(U.nurse);p.v.interv={t:Date.now(),x:'تدخل غير دوائي: '+x};p.v.due=Date.now()+30*MIN;addTL(p,'تدخل غير دوائي: '+x);save();rr()}
+function dueNow(){const p=byMrn(U.nurse);p.v.due=Date.now();save();toast('صار وقت إعادة التقييم الآن');rr()}
+function saveReassess(){const p=byMrn(U.nurse),v=p.v,r=reassessResult(p),sc=recScale(p);v.reassessed=Date.now();const remaining=evalCmp(v.cmp).ch.filter(([k])=>v.after[k]!=='back').length;v.history.push({t:Date.now(),c:remaining});v.due=r.c==='green'?null:Date.now()+60*MIN;
+  addTL(p,`إعادة التقييم: ${r.t}${v.afterScore!==''?` · ${sc.name} ${v.afterScore}`:''}`);save();toast('خُزنت إعادة التقييم');rr()}
+function saveEpisode(){const p=byMrn(U.nurse),v=p.v,c=$('#fc').value;if(!c){toast('اختاري السبب النهائي');return}v.finalCause=c;v.episodeSaved=true;const e=evalCmp(v.cmp);
+  const signs=e.ch.map(([k])=>v.cmp[k].n||DOM.find(d=>d[0]===k)[1]).join(' + ')+(v.board.loc.length?' + أشار إلى '+locNames(v.board).join('، '):'');
+  p.episodes=(p.episodes||[]).filter(x=>!x._cur);const d=new Date();p.episodes.push({date:d.toLocaleDateString('ar-SA-u-ca-gregory-nu-latn',{month:'long',year:'numeric'}),cause:c,signs:signs||'—',_cur:true});
+  addTL(p,'الخروج: حُفظت النوبة في الذاكرة - '+c);save();toast('حُفظت النوبة، وتظهر في المرة القادمة إذا تكررت العلامات');rr()}
+function discharge(){const p=byMrn(U.nurse);(p.episodes||[]).forEach(e=>delete e._cur);p.v=emptyVisit();save();toast('انتهت الزيارة · خرج المريض');U.step=1;rr()}
+function closeVisit(){U.nurse=null;U.step=1;rr()}
+
+/* ================= لوحة التحكم ================= */
+function vDash(){
+  const now=Date.now();
+  const rows=S.patients.map(p=>({p,s:status(p),e:evalCmp(p.v.cmp)})).sort((a,b)=>a.s.o-b.s.o||((a.p.v.due||9e15)-(b.p.v.due||9e15)));
+  const alerts=[];
+  rows.forEach(({p,s,e})=>{const v=p.v,tag=`<b>${esc(p.name)} · سرير ${p.bed}:</b> `;
+    if(!p.card){alerts.push(['gray',tag+'مريض جديد بلا بطاقة - أُرسلت أسئلة المرافق الأربعة']);return}
+    const h=v.history;if(h.length>=2&&h.at(-1).c>h.at(-2).c)alerts.push(['red',tag+`تغير يزداد: من ${h.at(-2).c===1?'مجال':h.at(-2).c+' مجالات'} إلى ${h.at(-1).c} بين تقييمين - احتمال تدهور`]);
+    else if(s.c==='red'&&e.mt.length&&!v.reassessed)alerts.push(['red',tag+'تغير يطابق علامة ألم معروفة عنه - احتمال ألم']);
+    if(v.due&&v.due<=now)alerts.push(['amber',tag+'إعادة التقييم مستحقة منذ '+hm(v.due)]);
+    if(v.reassessed){const r=reassessResult(p);if(r&&r.c!=='green')alerts.push(['amber',tag+r.t+' · '+r.x])}
+    if(!v.cmpSaved&&!v.closed)alerts.push(['violet',tag+''+(now-v.arrived>15*MIN?'لم يُقيّم بعد - افتحيه لبدء المقارنة':'وصل للطوارئ - بانتظار المقارنة السريعة')]);
+    if(monthsSince(p.card.updated)>=6)alerts.push(['gray',tag+`لم تُحدّث بطاقتها منذ ${monthsSince(p.card.updated)} أشهر - أُرسل طلب تحديث للأسرة`]);
+  });
+  const sel=byMrn(U.dashSel)||rows[0].p;
+  const k={card:S.patients.filter(p=>p.card).length,red:rows.filter(r=>r.s.c==='red').length,due:S.patients.filter(p=>p.v.due&&p.v.due<=now).length,none:S.patients.filter(p=>!p.card).length};
+  const t=U.dashTab;
+  const table=`<div class="card" style="padding:0;overflow-x:auto"><h3 style="padding:14px 16px 0">المرضى مرتبين حسب الأولوية</h3><table class="dtable"><thead><tr><th>الحالة</th><th>المريض</th><th>السرير</th><th>المجالات المتغيرة</th><th>آخر تقييم</th><th>إعادة التقييم</th></tr></thead><tbody>
+    ${rows.map(({p,s,e})=>{const last=p.v.reassessed||p.v.cmpSaved;const due=p.v.due;return `<tr class="click ${p.mrn===sel.mrn?'sel':''}" onclick="U.dashSel='${p.mrn}';rr()" ondblclick="openNurse('${p.mrn}',${p.v.cmpSaved?5:1})">
+      <td><span class="pill p-${s.c}">${s.t}</span></td><td><b>${esc(p.name)}</b><div class="note">${p.age} سنة</div></td><td>${p.bed}</td>
+      <td>${p.v.cmpSaved?(e.ch.length?`${e.ch.length} - ${e.ch.map(d=>d[1]).join('، ')}`:'0'):'—'}</td><td>${hm(last)}</td><td>${due?`<span class="${due<=now?'due-late':''}">${hm(due)}</span>`:'—'}</td></tr>`}).join('')}
+    </tbody></table><p class="note" style="padding:8px 16px">اضغطي صفًا لعرض منحناه، وضغطتين لفتحه في واجهة الممرض.</p></div>`;
+  const chart=`<div class="card"><h3>منحنى التغير - ${esc(sel.name)}</h3>${lineChart(sel.v.history)}<p class="note" style="margin:4px 0 0">عدد المجالات المتغيرة عن المعتاد (من 7) عبر الوقت. ${trendNote(sel.v.history)}</p></div>`;
+  const al=`<div class="card"><h3>التنبيهات الذكية</h3>${alerts.map(a=>`<div class="alert ${a[0]}">${a[1]}</div>`).join('')||'<p class="note">لا توجد تنبيهات.</p>'}<p class="note">تنبيهات بقواعد واضحة. تنبّه ولا تشخّص.</p></div>`;
+  const reports=`<div class="card"><h3>التقارير</h3><dl class="kv"><dt>متوسط وقت المقارنة</dt><dd>${avgCmp()}</dd><dt>تقييمات اليوم</dt><dd>${S.patients.filter(p=>p.v.cmpSaved).length}</dd><dt>إعادات تقييم مكتملة</dt><dd>${S.patients.filter(p=>p.v.reassessed).length}</dd><dt>نوبات محفوظة في الذاكرة</dt><dd>${S.patients.reduce((a,p)=>a+(p.episodes||[]).length,0)}</dd><dt>بطاقات قديمة (6 أشهر+)</dt><dd>${S.patients.filter(p=>p.card&&monthsSince(p.card.updated)>=6).length}</dd></dl></div>`;
+  const body= t==='patients'?table : t==='alerts'?al : t==='reports'?reports :
+   `<div class="grid g4" style="margin-bottom:14px">
+     <div class="card kpi"><span class="note">مرضى لديهم بطاقة بصمة</span><b>${k.card}</b></div>
+     <div class="card kpi red"><span class="note">تنبيهات حمراء</span><b>${k.red}</b></div>
+     <div class="card kpi amber"><span class="note">إعادة تقييم مستحقة</span><b>${k.due}</b></div>
+     <div class="card kpi"><span class="note">مرضى بدون بطاقة</span><b>${k.none}</b></div></div>
+    <div class="split">${table}<div class="grid">${chart}${al}</div></div>`;
+  $('#app').innerHTML=`<div class="row"><div><h1>لوحة التحكم الذكية · قسم الطوارئ</h1><p class="muted" style="margin:0">اضغطي على أي مريض لعرض منحنى التغير. الترتيب: الأحمر أولًا، ثم من حان وقت إعادة تقييمه، ثم الأصفر، ثم الأخضر.</p></div><span class="sp"></span><span class="note">${new Date().toLocaleDateString('ar-SA-u-ca-gregory-nu-latn',{weekday:'long',day:'numeric',month:'long'})} · ${hm(now)}</span></div>
+  <div class="dash" style="margin-top:14px"><aside><div style="color:#fff;font-weight:700;padding:4px 10px 12px">بصمة</div>
+    ${[['all','لوحة التحكم'],['patients','المرضى'],['alerts','التنبيهات'],['reports','التقارير']].map(([key,l])=>`<a class="${t===key?'on':''}" onclick="U.dashTab='${key}';rr()">${l}${key==='alerts'&&alerts.length?`<span class="n">${alerts.length}</span>`:''}</a>`).join('')}</aside>
+  <div class="in">${body}</div></div>`;
+}
+function avgCmp(){const xs=S.patients.map(p=>p.v.cmpSecs).filter(x=>x!=null);return xs.length?fmtSecs(Math.round(xs.reduce((a,b)=>a+b,0)/xs.length))+' دقيقة':'—'}
+function trendNote(h){if(h.length<2)return '';const d=h.at(-1).c-h.at(-2).c;return d>0?'<b style="color:var(--red)">يسوء: زادت المجالات المتغيرة.</b>':d<0?'<b style="color:var(--green)">يتحسن.</b>':'ثابت.'}
+function lineChart(h){
+  if(!h.length)return '<p class="note">لا توجد تقييمات بعد.</p>';
+  const W=320,H=150,pl=26,pr=10,pt=10,pb=24,n=h.length;
+  const x=i=>n===1?(W+pl-pr)/2:pl+(W-pl-pr)*i/(n-1), y=c=>pt+(H-pt-pb)*(1-c/7);
+  const last=h.at(-1).c,col=n>1&&last>h.at(-2).c?'#c8453b':n>1&&last<h.at(-2).c?'#2f8f5b':'#0f6b63';
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;direction:ltr">${[0,2,4,6].map(c=>`<line x1="${pl}" x2="${W-pr}" y1="${y(c)}" y2="${y(c)}" stroke="#e6eceb"/><text x="${pl-6}" y="${y(c)+4}" font-size="10" text-anchor="end" fill="#8a9a98">${c}</text>`).join('')}
+   <polyline fill="none" stroke="${col}" stroke-width="2.5" points="${h.map((p,i)=>x(i)+','+y(p.c)).join(' ')}"/>
+   ${h.map((p,i)=>`<circle cx="${x(i)}" cy="${y(p.c)}" r="4" fill="#fff" stroke="${col}" stroke-width="2"/><text x="${x(i)}" y="${y(p.c)-8}" font-size="10" text-anchor="middle" fill="${col}">${p.c}</text><text x="${x(i)}" y="${H-6}" font-size="10" text-anchor="middle" fill="#8a9a98">${hm(p.t)}</text>`).join('')}</svg>`;
+}
+
+/* ================= ملخص الطبيب ================= */
+function docText(p){
+  const c=p.card,v=p.v,e=evalCmp(v.cmp),sc=recScale(p),A=autoOpq(p),r=reassessResult(p);
+  const L=[`ملخص بصمة للطبيب · ${p.name} (افتراضي) · ${p.age} سنة · ملف ${p.mrn} · سرير ${p.bed}`,`التشخيص: ${p.dx}`];
+  if(!c){L.push('لا توجد بطاقة بصمة.');return L.join('\n')}
+  L.push(`الخلفية: ${c.med.cond||'غير متوفرة'} · الحساسية: ${c.med.allergy||'غير متوفرة'}${c.med.recur?' · '+c.med.recur:''}`);
+  L.push(`التواصل: ${c.comm.speaks?'يتكلم':'لا يتكلم'} · كيف أتعامل معه: ${[c.handle.beforeTouch,c.handle.comfort].filter(Boolean).join('، ')||'غير متوفر'}`);
+  if(p.diarySum)L.push('اليوميات: '+p.diarySum);
+  L.push(`المقارنة بخط الأساس: ${e.t}${e.ch.length?' · '+e.ch.map(([k,t])=>`${t}: «${c.base[k]||'—'}» ← «${v.cmp[k].n||'متغير'}»${v.cmp[k].m?' (علامة ألم معروفة)':''}`).join(' | '):''}`);
+  L.push(`تقييم الألم: الموقع ${A.loc[0]||'—'} · الشدة ${A.sev[0]||'—'}`);
+  if(v.hidden.length)L.push('الأسباب الخفية المقترحة للفحص: '+v.hidden.join('، '));
+  if(v.interv)L.push(`المتابعة: ${v.interv.x} ${hm(v.interv.t)}${r?' · '+r.t:''}`);
+  if(v.finalCause)L.push('السبب النهائي: '+v.finalCause);
+  L.push('تنبيه: بصمة تنبّه ولا تشخّص، والقرار للفريق الصحي.');
+  return L.join('\n');
+}
+function vDoctor(){
+  const p=byMrn(U.doc)||S.patients[0],c=p.card,v=p.v,e=evalCmp(v.cmp),sc=recScale(p),A=autoOpq(p),r=reassessResult(p);
+  const opts=S.patients.map(x=>`<option value="${x.mrn}" ${x.mrn===p.mrn?'selected':''}>${esc(x.name)} · ${x.mrn}</option>`).join('');
+  $('#app').innerHTML=`<div class="row"><div><h1>ملخص الطبيب</h1><p class="muted" style="margin:0">صفحة واحدة تُبنى تلقائيًا من البطاقة والمقارنة والتقييم والمتابعة.</p></div><span class="sp"></span><select style="width:auto" onchange="U.doc=this.value;rr()">${opts}</select><button class="btn ghost" onclick="copyText(docText(byMrn(U.doc)||S.patients[0]),'نُسخ الملخص')">نسخ</button></div>
+  <div class="doc" style="margin-top:14px"><div class="row"><h2 style="margin:0">ملخص بصمة للطبيب</h2><span class="sp"></span><span class="note">${new Date().toLocaleDateString('ar-SA-u-ca-gregory-nu-latn',{day:'numeric',month:'long',year:'numeric'})} · ${hm(Date.now())}</span></div>
+   <h3>المريض</h3><dl class="kv"><dt>الاسم</dt><dd>${esc(p.name)} (افتراضي) · ${p.age<18?'طفل':'بالغ'} · ${p.age} سنة</dd><dt>الملف</dt><dd>${p.mrn} · سرير ${p.bed}</dd><dt>التشخيص</dt><dd>${esc(p.dx)}</dd>
+    ${c?`<dt>الخلفية</dt><dd>${esc(c.med.cond)||'غير متوفرة'} · الحساسية: ${esc(c.med.allergy)||'غير متوفرة'}</dd><dt>التواصل</dt><dd>${c.comm.speaks?'يتكلم':'لا يتكلم'}${c.comm.pictures?'، يفهم الصور':''}</dd><dt>كيف أتعامل معه</dt><dd>${esc([c.handle.beforeTouch,c.handle.comfort].filter(Boolean).join('، '))||'غير متوفر'}</dd>`:'<dt>البطاقة</dt><dd>لا توجد بطاقة</dd>'}</dl>
+   ${p.diarySum?`<h3>اليوميات</h3><p style="margin:0">${esc(p.diarySum)}</p>`:''}
+   ${c?`<h3>المقارنة بخط الأساس</h3><div class="res ${e.c}"><b class="t">${e.t}</b><div style="font-size:14px">${e.x}</div></div>
+   ${e.ch.length?`<table style="margin-top:8px"><thead><tr><th>المجال</th><th>المعتاد</th><th>الآن</th><th>بعد التدخل</th></tr></thead><tbody>${e.ch.map(([k,t])=>`<tr><td>${t}</td><td>${esc(c.base[k])||'—'}</td><td>${esc(v.cmp[k].n)||'متغير'}${v.cmp[k].m?' <span class="pill p-violet">علامة ألم معروفة</span>':''}</td><td>${{same:'كما هو',better:'تحسّن',back:'عاد لعادته'}[v.after[k]]||'—'}</td></tr>`).join('')}</tbody></table>`:''}
+   <h3>تقييم الألم</h3><dl class="kv"><dt>المقياس</dt><dd>${sc.name}${v.score!==''?' · '+esc(v.score)+(sc.max?' من '+sc.max:''):' · لم تُسجَّل درجة'}${v.afterScore!==''?' ← بعد التدخل '+esc(v.afterScore):''}</dd><dt>الموقع</dt><dd>${esc(A.loc[0])||'—'}</dd><dt>الشدة</dt><dd>${esc(A.sev[0])||'—'}</dd></dl>
+   <h3>الأسباب الخفية المقترحة للفحص</h3>${v.hidden.length?`<ul style="margin:0">${v.hidden.map(h=>`<li>${esc(h)}</li>`).join('')}</ul>`:'<p class="note" style="margin:0">لم يُحدد سبب بعد.</p>'}
+   <h3>المتابعة</h3><p style="margin:0">${v.interv?esc(v.interv.x)+' الساعة '+hm(v.interv.t)+'.':'لم يُسجّل تدخل.'} ${r?'إعادة التقييم: '+r.t+'.':''} ${v.finalCause?'السبب النهائي: '+esc(v.finalCause)+'.':''}</p>
+   <h3>السجل الزمني</h3><ul class="tl">${v.tl.map(t=>`<li><time>${hm(t.t)}</time><span>${esc(t.x)}</span></li>`).join('')||'<li><span class="note">لا توجد أحداث.</span></li>'}</ul>`:''}
+   <p class="note" style="margin-top:16px;border-top:1px solid var(--line);padding-top:10px">بصمة تنبّه ولا تشخّص. القرار للطبيب والفريق الصحي.</p></div>`;
+}
+
+/* ================= الذكاء الاصطناعي ================= */
+const AUS=[['brow','تقطيب الحاجب'],['eye','إغماض العين بقوة'],['lip','رفع الشفة العليا'],['mouth','فتح الفم']];
+const AI_BASE={brow:.1,eye:.08,lip:.05,mouth:.12}, AI_NOW={brow:.72,eye:.81,lip:.46,mouth:.22};
+function aiFace(a){const b=a.brow,e=a.eye,l=a.lip,m=a.mouth;
+  return `<svg viewBox="0 0 200 240" width="220"><ellipse cx="100" cy="122" rx="74" ry="96" fill="#e9c4a0" stroke="#b98c66" stroke-width="2"/>
+   <path d="M55 ${88+b*8} Q75 ${80+b*14} 92 ${90+b*10}" stroke="#4a2f20" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M145 ${88+b*8} Q125 ${80+b*14} 108 ${90+b*10}" stroke="#4a2f20" stroke-width="5" fill="none" stroke-linecap="round"/>
+   <ellipse cx="74" cy="108" rx="13" ry="${Math.max(1.5,7*(1-e))}" fill="#2b1a12"/><ellipse cx="126" cy="108" rx="13" ry="${Math.max(1.5,7*(1-e))}" fill="#2b1a12"/>
+   ${e>.4?'<path d="M60 102 L68 106 M140 102 L132 106" stroke="#8a5a3c" stroke-width="2"/>':''}
+   ${[[55,88+b*8],[92,90+b*10],[108,90+b*10],[145,88+b*8],[61,108],[87,108],[113,108],[139,108],[76,172-l*8],[124,172-l*8],[100,166-l*10]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3.5" fill="#5fc4b6"/>`).join('')}<path d="M100 118 L94 148 L106 148" stroke="#b98c66" stroke-width="2.5" fill="none"/>
+   <path d="M76 ${172-l*8} Q100 ${172-l*14-(m*6)} 124 ${172-l*8}" stroke="#7a3a2c" stroke-width="4" fill="none" stroke-linecap="round"/>
+   <path d="M78 ${174} Q100 ${b>.4?168+m*28:182+m*20} 122 174" stroke="#7a3a2c" stroke-width="4" fill="${m>.15?'#5a2420':'none'}" stroke-linecap="round"/></svg>`}
+function vAI(){
+  const p=byMrn('10482'),A=U.ai,now=A.mode==='base'?AI_BASE:(A.done?AI_NOW:Object.fromEntries(AUS.map(([k])=>[k,AI_BASE[k]+(AI_NOW[k]-AI_BASE[k])*A.run])));
+  const changed=AUS.filter(([k])=>AI_NOW[k]-AI_BASE[k]>.25).length;
+  $('#app').innerHTML=`<div class="row"><div><h1>مقارنة الوجه بفيديو البصمة</h1><p class="muted" style="margin:0">يقارن حركات وجه المريض الآن بوجهه هو وهو مرتاح، لا بوجه شخص عادي. <span class="pill p-violet">ذكاء اصطناعي · عرض تجريبي</span></p></div><span class="sp"></span><span class="pill p-gray">عرض توضيحي لسعد</span></div>
+  <div class="split2" style="margin-top:14px">
+    <div class="card" style="background:#13201f;text-align:center;color:#fff"><div class="row"><span class="pill ${A.mode==='base'?'p-green':'p-red'}">${A.mode==='base'?'فيديو البصمة · مرتاح':'الآن · الطوارئ'}</span></div>${aiFace(now)}
+      <div class="row" style="justify-content:center;margin-top:8px"><button class="btn sm" onclick="runAI()" ${A.run>0&&!A.done?'disabled':''}>● تحليل مقطع 10 ثوانٍ</button><button class="btn ghost sm" onclick="U.ai={mode:'base',run:0,done:false};rr()">عرض فيديو البصمة (مرتاح)</button></div></div>
+    <div class="card"><h3>حركات وجه سعد مقارنة بفيديو البصمة (مرتاح · ${p?.card?.updated?fmtDate(p.card.updated):'—'})</h3>
+      <div class="row note"><span>▬ المعتاد عنده</span><span style="color:var(--red)">▬ الآن</span></div>
+      ${AUS.map(([k,l])=>`<div style="margin:12px 0"><div class="row"><b style="font-size:14px">${l}</b><span class="sp"></span><span class="note">${A.mode==='now'?(Math.round(now[k]*100)+'٪ مقابل '+Math.round(AI_BASE[k]*100)+'٪'):'—'}</span></div>
+        <div class="bar" style="margin-top:4px"><span style="width:${AI_BASE[k]*100}%;background:#9fb6b2"></span></div>${A.mode==='now'?`<div class="bar" style="margin-top:3px"><span style="width:${now[k]*100}%;background:var(--red)"></span></div>`:''}</div>`).join('')}
+      <div class="res ${A.done?'amber':'gray'}" style="margin-top:10px">${A.done?`<b class="t">مؤشر إضافي: تغير في ${changed} من 4 حركات عن وجهه المعتاد</b><div style="font-size:14px">يتوافق مع علامة ألم معروفة عنه في البطاقة (يغمض عينيه بقوة). يُضاف إلى المقارنة السريعة ولا يحل محلها.</div>`:A.run>0?`جارٍ التحليل… ${Math.round(A.run*100)}٪`:'اضغطي «تحليل مقطع 10 ثوانٍ» لمقارنة وجه سعد الآن بفيديو البصمة.'}</div>
+      <div class="card" style="margin-top:12px;background:#f7faf9"><b>ضوابط:</b> <span class="note">نتيجة الذكاء الاصطناعي مؤشر إضافي، يظهر بجانب المقارنة السريعة، ولا يُغيّر لون التنبيه وحده. لا يُرسل فيديو ولا يُحفظ إلا بموافقة الأسرة، ولا يُستخدم للتشخيص. هذا عرض توضيحي ببيانات افتراضية، ولا يحلل وجهًا حقيقيًا.</span></div>
+      <p class="note">مرحلة مستقبلية في خارطة الطريق (المرحلة 5).</p></div></div>`;
+}
+function runAI(){U.ai={mode:'now',run:.01,done:false};rr();const h=setInterval(()=>{U.ai.run=Math.min(1,U.ai.run+.08);if(U.ai.run>=1){clearInterval(h);U.ai.done=true;const p=byMrn('10482');if(p&&!p.v.tl.find(t=>t.x.startsWith('الذكاء')))addTL(p,'الذكاء الاصطناعي: تغير في 3 من 4 حركات وجه عن فيديو البصمة (مؤشر إضافي)');save()}if(location.hash==='#ai')rr()},160)}
+
+/* ================= FHIR ================= */
+function fhirBundle(p){
+  const c=p.card||emptyCard(),v=p.v,e=evalCmp(v.cmp),sc=recScale(p),pid='demo-'+p.mrn,ref={reference:'Patient/'+pid};
+  const iso=t=>t?new Date(t).toISOString():undefined, entry=[];
+  entry.push({resource:{resourceType:'Patient',id:pid,identifier:[{system:'urn:demo:hospital-mrn',value:p.mrn}],name:[{given:[p.name]}],gender:p.sex==='أنثى'?'female':'male'}});
+  entry.push({resource:{resourceType:'QuestionnaireResponse',id:'basma-card-'+p.mrn,questionnaire:'Questionnaire/basma-card',status:'completed',subject:ref,authored:iso(c.updated),source:{display:c.by||'الأسرة'},
+    item:[{linkId:'communication',text:'طريقة التواصل',answer:[{valueString:(c.comm.speaks?'يتكلم':'لا يتكلم')+(c.comm.refuse?'. '+c.comm.refuse:'')}]},{linkId:'pain-signs',text:'علامات الألم الخاصة به',answer:[...c.pain,c.painOther].filter(Boolean).map(x=>({valueString:x}))},
+      {linkId:'baseline',text:'السلوك المعتاد',item:DOM.map(([k,t])=>({linkId:'baseline-'+k,text:t,answer:[{valueString:c.base[k]||''}]}))},{linkId:'handling',text:'كيف أتعامل معه',answer:[{valueString:[c.handle.upset,c.handle.beforeTouch,c.handle.comfort].filter(Boolean).join(' · ')}]}]}});
+  if(v.cmpSaved)entry.push({resource:{resourceType:'Observation',id:'basma-comparison-'+p.mrn,status:'final',code:{text:'مقارنة بصمة بخط الأساس'},subject:ref,effectiveDateTime:iso(v.cmpSaved),valueString:e.t,component:e.ch.map(([k,t])=>({code:{text:t},valueString:v.cmp[k].n||'متغير'}))}});
+  if(v.score!=='')entry.push({resource:{resourceType:'Observation',id:'basma-pain-score-'+p.mrn,status:'final',code:{text:sc.full+' ('+sc.name+')'},subject:ref,effectiveDateTime:iso(v.painSaved),valueQuantity:{value:+v.score},bodySite:v.board.loc.length?{text:locNames(v.board).join('، ')}:undefined}});
+  if(v.finalCause)entry.push({resource:{resourceType:'Condition',id:'basma-episode-'+p.mrn,clinicalStatus:{text:'resolved'},code:{text:v.finalCause},subject:ref,note:[{text:'سبب النوبة النهائي بعد مراجعة الطبيب'}]}});
+  if(v.interv)entry.push({resource:{resourceType:'MedicationAdministration',id:'basma-med-'+p.mrn,status:'completed',medicationCodeableConcept:{text:v.interv.x},subject:ref,effectiveDateTime:iso(v.interv.t)}});
+  entry.push({resource:{resourceType:'Provenance',id:'basma-prov-'+p.mrn,target:[{reference:'QuestionnaireResponse/basma-card-'+p.mrn}],recorded:iso(c.updated||Date.now()),agent:[{who:{display:c.by||'الأسرة'}}]}});
+  return JSON.stringify({resourceType:'Bundle',type:'collection',entry},null,2);
+}
+function vFhir(){
+  const p=byMrn(U.fhir)||S.patients[0];
+  const opts=S.patients.map(x=>`<option value="${x.mrn}" ${x.mrn===p.mrn?'selected':''}>${esc(x.name)} · ${x.mrn}</option>`).join('');
+  const map=[['بيانات المريض الأساسية','Patient'],['بطاقة البصمة واليوميات وإجابات المقارنة','QuestionnaireResponse'],['درجة مقياس الألم ونتيجة المقارنة','Observation'],['السبب النهائي للنوبة','Condition'],['إعطاء المسكن','MedicationAdministration'],['مصدر كل معلومة','Provenance']];
+  $('#app').innerHTML=`<div class="row"><div><h1>الربط مع الملف الصحي</h1><p class="muted" style="margin:0">تعمل بصمة من داخل نظام المستشفى، وتُحفظ بياناتها بمعيار HL7 FHIR. هذا ملف البيانات الذي يُبنى من تقييم المريض الآن.</p></div><span class="sp"></span><select style="width:auto" onchange="U.fhir=this.value;rr()">${opts}</select><button class="btn ghost" onclick="copyText(fhirBundle(byMrn(U.fhir)||S.patients[0]),'نُسخ ملف البيانات')">نسخ الملف</button></div>
+  <div class="split2" style="margin-top:14px">
+    <div class="grid"><div class="card" style="padding:0"><table><thead><tr><th>بيانات بصمة</th><th>طريقة حفظها</th></tr></thead><tbody>${map.map(([a,b])=>`<tr><td>${a}</td><td style="direction:ltr;text-align:right;font-family:ui-monospace,monospace;font-size:13px">${b}</td></tr>`).join('')}</tbody></table></div>
+      <div class="card"><b>كيف يصل الممرض إلى البطاقة؟</b><p class="note" style="margin:4px 0 0">يدخل رقم الهوية أو رقم الملف، فتظهر البطاقة واليوميات كجزء من ملف المريض دون تسجيل دخول إضافي. ولا تحتاج الأسرة إلى تطبيق: تعبّئ البطاقة من رابط آمن تصلها برسالة نصية، ويُسجَّل من أنشأها ومن اطلع عليها ومتى.</p></div>
+      <div class="card"><p class="note" style="margin:0">مستقبلًا: بعد الموافقات والاعتماد، يمكن أن تنتقل بطاقة البصمة بين المستشفيات عبر منصة التبادل الوطني للمعلومات الصحية (SeHE). النموذج لا يتصل بأي نظام حقيقي.</p></div></div>
+    <pre class="code">${esc(fhirBundle(p))}</pre></div>`;
+}
+
+route();
+</script>
+</body>
+</html>
